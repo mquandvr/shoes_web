@@ -39,7 +39,7 @@
           <div>New UI Project - <strong>deadline</strong>
           </div>
           <small class="text-muted mr-3"><i class="icon-calendar"></i>&nbsp;&nbsp;10 - 11pm</small>
-          <small class="text-muted"><i class="icon-home"></i>&nbsp;&nbsp;creativeLabs HQ</small>
+          <small class="text-muted"><i class="icon-home"></i>&nbsp;&nbsp;Freelancer team</small>
           <div class="avatars-stack mt-2">
             <div class="avatar avatar-xs">
               <img class="img-avatar" src="img/avatars/2.jpg" alt="admin@bootstrapmaster.com">
@@ -66,7 +66,7 @@
         <b-list-group-item href="#" class="list-group-item-accent-primary list-group-item-divider">
           <div><strong>Team meeting</strong></div>
           <small class="text-muted mr-3"><i class="icon-calendar"></i>&nbsp; 4 - 6pm</small>
-          <small class="text-muted"><i class="icon-home"></i>&nbsp; creativeLabs HQ</small>
+          <small class="text-muted"><i class="icon-home"></i>&nbsp; Freelancer team</small>
           <div class="avatars-stack mt-2">
             <div class="avatar avatar-xs">
               <img src="img/avatars/2.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">

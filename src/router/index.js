@@ -68,12 +68,11 @@ export default new Router({
     {
       path: '/',
       redirect: '/dashboard',
-      name: 'Home',
+      name: 'Trang chủ',
       component: DefaultContainer,
       children: [
         {
           path: 'dashboard',
-          name: 'Dashboard',
           component: Dashboard
         },
         {

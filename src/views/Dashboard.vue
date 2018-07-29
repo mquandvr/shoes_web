@@ -459,7 +459,7 @@ import CalloutChartExample from './dashboard/CalloutChartExample'
 import { Callout } from '@coreui/vue'
 
 export default {
-  name: 'dashboard',
+  name: 'Trang chủ',
   components: {
     Callout,
     CardLine1ChartExample,
