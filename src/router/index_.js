@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from '../store'
 
 // Containers
 const DefaultContainer = () => import('@/containers/DefaultContainer')
@@ -50,35 +49,19 @@ const Badges = () => import('@/views/notifications/Badges')
 const Modals = () => import('@/views/notifications/Modals')
 
 // Views - Pages
-const Page404 = () => import('@/components/admin/pages/Page404')
-const Page500 = () => import('@/components/admin/pages/Page500')
-const Login = () => import('@/components/admin/pages/Login')
-const Register = () => import('@/components/admin/pages/Register')
+const Page404 = () => import('@/views/pages/Page404')
+const Page500 = () => import('@/views/pages/Page500')
+const Login = () => import('@/views/pages/Login')
+const Register = () => import('@/views/pages/Register')
 
 // Users
 const Users = () => import('@/views/users/Users')
 const User = () => import('@/views/users/User')
 
 Vue.use(Router)
-alert(store.getters.isAuthenticated)
-const ifNotAuthenticated = (to, from, next) => {
-  if (!store.getters.isAuthenticated) {
-   next()
-   return
-  }
-  next('/')
-}
-
-const ifAuthenticated = (to, from, next) => {
-  if (store.getters.isAuthenticated) {
-   next()
-   return
-  }
-  next('/login')
-}
 
 export default new Router({
-  mode: 'history', // https://router.vuejs.org/api/#mode
+  mode: 'hash', // https://router.vuejs.org/api/#mode
   linkActiveClass: 'open active',
   scrollBehavior: () => ({ y: 0 }),
   routes: [
@@ -87,7 +70,6 @@ export default new Router({
       redirect: '/dashboard',
       name: 'Home',
       component: DefaultContainer,
-      beforeEnter: ifAuthenticated,
       children: [
         {
           path: 'dashboard',
@@ -321,25 +303,34 @@ export default new Router({
       ]
     },
     {
-      path: '/login',
-      name: 'Login',
-      component: Login, 
-      beforeEnter: ifNotAuthenticated
-    },
-    {
-      path: '/register',
-      name: 'Register',
-      component: Register
-    },
-    {
-      path: '404',
-      name: 'Page404',
-      component: Page404
-    },
-    {
-      path: '500',
-      name: 'Page500',
-      component: Page500
+      path: '/pages',
+      redirect: '/pages/404',
+      name: 'Pages',
+      component: {
+        render (c) { return c('router-view') }
+      },
+      children: [
+        {
+          path: '404',
+          name: 'Page404',
+          component: Page404
+        },
+        {
+          path: '500',
+          name: 'Page500',
+          component: Page500
+        },
+        {
+          path: 'login',
+          name: 'Login',
+          component: Login
+        },
+        {
+          path: 'register',
+          name: 'Register',
+          component: Register
+        }
+      ]
     }
   ]
 })
