@@ -60,7 +60,7 @@ const Users = () => import('@/views/users/Users')
 const User = () => import('@/views/users/User')
 
 Vue.use(Router)
-alert(store.getters.isAuthenticated)
+
 const ifNotAuthenticated = (to, from, next) => {
   if (!store.getters.isAuthenticated) {
    next()
@@ -77,7 +77,7 @@ const ifAuthenticated = (to, from, next) => {
   next('/login')
 }
 
-export default new Router({
+const router =  new Router({
   mode: 'history', // https://router.vuejs.org/api/#mode
   linkActiveClass: 'open active',
   scrollBehavior: () => ({ y: 0 }),
@@ -342,3 +342,5 @@ export default new Router({
     }
   ]
 })
+
+export default router;

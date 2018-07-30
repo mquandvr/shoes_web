@@ -53,8 +53,8 @@ export default {
   },
   methods: {
     doLogout() {
-      this.$store.dispatch(AUTH_LOGOUT);
-      this.$router.push('/')
+      this.$store.dispatch(AUTH_LOGOUT)
+      this.$router.push('/login')
     }
   }
 }
