@@ -19,12 +19,12 @@ export default {
     },
     {
       name: 'Nhân viên',
-      url: '/theme/colors',
+      url: '/people/employees',
       icon: 'cui-user'
     },
     {
       name: 'Khách hàng',
-      url: '/theme/colors',
+      url: '/people/customer',
       icon: 'cui-people'
     },
     {
