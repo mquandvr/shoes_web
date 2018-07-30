@@ -63,6 +63,7 @@ const mutations = {
     },
     [AUTH_LOGOUT]: (state) => {
         state.status = ''
+        state.token = ''
     }
 }
 

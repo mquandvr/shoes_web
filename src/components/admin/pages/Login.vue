@@ -65,7 +65,7 @@ export default {
       .catch(err => console.log(err))
     },
     doRegister() {
-      this.$router.push('/register')
+      this.$router.push({name: 'Register'})
     }
   }
 }
