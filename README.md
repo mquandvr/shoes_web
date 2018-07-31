@@ -11,6 +11,7 @@ This is UI module for SHOES project
 #### Cài đặt thư viện
  
 ```
+    npm install -g @vue/cli-service-global
     npm install
 ```
 
