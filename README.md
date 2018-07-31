@@ -1,7 +1,36 @@
 This is UI module for SHOES project
 
-api                                        : common liên kết tới api. -> Tham khảo: https://goo.gl/rnYwRX
-    + http-common.js                     
+## Cài đặt
+
+* [Node](https://nodejs.org/en/)
+* Nodist
+* [Git](https://git-scm.com/)
+* [VSCode](https://code.visualstudio.com/)
+
+
+#### Cài đặt thư viện
+```
+    npm install
+```
+
+## Khởi động server
+
+```
+    npm run serve
+```
+
+## Tài liệu tham khảo
+- [Vue](https://vi.vuejs.org/v2/guide/index.html)
+- [Vuex](https://vuex.vuejs.org/)
+- [VueRouter](https://router.vuejs.org/)
+- [Scss](https://sass-lang.com/guide)
+- [Axios](https://goo.gl/rnYwRX)
+- [ES6](https://devhints.io/es6)
+
+## Cấu trúc WEB
+```
+api                                        : common liên kết tới api. 
+    http-common.js                     
 asset                                      
     |_ scss
         + ...
@@ -41,3 +70,4 @@ views                                      : Chứa component của web. Hiện 
         |_ ...
     |_ customer
         + ...
+```
