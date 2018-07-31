@@ -1,14 +1,15 @@
 <template> 
   <b-row>
     <b-col md="6" class="my-1">
-        <b-form-group horizontal label="Filter" class="mb-0">
-          <b-input-group>
-            <b-form-input v-model="filter" placeholder="Type to Search" />
-            <b-input-group-append>
-              <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
-            </b-input-group-append>
-          </b-input-group>
-        </b-form-group>
+      <b-input-group>
+        <b-form-input v-model="filter" placeholder="Tìm kiếm" />
+        <b-input-group-append>
+          <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
+          </b-input-group-append>
+      </b-input-group>
+    </b-col>
+    <b-col md="6" class="my-1" style="position: relative">
+      <b-button size="sm" class="mb-0 fa fa-plus-square" style="position: absolute; right: 15px; top: 5px;"> Thêm nhân viên</b-button>
     </b-col>
     <b-col cols="12" xl="12">
       <transition name="slide">
@@ -50,7 +51,7 @@
 <script>
 import employeesData from './EmployeesData'
 export default {
-  name: 'Nhân viên',
+  name: 'Employees',
   props: {
     caption: {
       type: String,
