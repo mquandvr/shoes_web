@@ -10,12 +10,6 @@ This is UI module for SHOES project
 
 #### Cài đặt thư viện
  
- Thực thi bằng command line:
- 
- Mở thư mục chứa source rồi thực thi như bên dưới: `Shift + Right Click`
- 
- ![](https://www.sevenforums.com/attachments/tutorials/128263d1293916864-open-command-window-here-add-remove-shift-right-click-right_click.jpg)
-
 ```
     npm install
 ```
