@@ -9,6 +9,13 @@ This is UI module for SHOES project
 
 
 #### Cài đặt thư viện
+ 
+ Thực thi bằng command line:
+ 
+ Mở thư mục chứa source rồi thực thi như bên dưới: `Shift + Right Click`
+ 
+ ![](https://www.sevenforums.com/attachments/tutorials/128263d1293916864-open-command-window-here-add-remove-shift-right-click-right_click.jpg)
+
 ```
     npm install
 ```
@@ -20,6 +27,9 @@ This is UI module for SHOES project
 ```
 
 ## Tài liệu tham khảo
+
+ Các công nghệ được áp dụng trên web:
+
 - [Vue](https://vi.vuejs.org/v2/guide/index.html)
 - [Vuex](https://vuex.vuejs.org/)
 - [VueRouter](https://router.vuejs.org/)
@@ -28,6 +38,9 @@ This is UI module for SHOES project
 - [ES6](https://devhints.io/es6)
 
 ## Cấu trúc WEB
+
+ Tham khảo cấu trúc web bên dưới để thống nhất code:
+    
 ```
 api                                        : common liên kết tới api. 
     http-common.js                     
