@@ -1,13 +1,13 @@
 This is UI module for SHOES project
 
-api                                        : common liên kết tới api.
-    + http-common.js                     -> Tham khảo: https://goo.gl/rnYwRX
+api                                        : common liên kết tới api. -> Tham khảo: https://goo.gl/rnYwRX
+    + http-common.js                     
 asset                                      
     |_ scss
         + ...
-containers                                 : Khung sườn chính của web. 
-    |_ admin                                 Hiện tại chia làm 2 phần: 
-        + DefaultContainer.vue               admin và customer
+containers                                 : Khung sườn chính của web. Hiện tại chia làm 2 phần: admin và customer
+    |_ admin                                  
+        + DefaultContainer.vue               
         + DefaultAside.vue
         + DefaultHeaderDropdownAccnt.vue
     |_ customer
@@ -27,12 +27,12 @@ store                                      : Xử lý data. Sử dụng vuex.
             + auth-mutation-types.js
         |_ nhanvien
             + ....
-utils                                      : Xử lý chung. 
-    + constants.js                          -> Ví dụ method blank, null, ...
+utils                                      : Xử lý chung. -> Ví dụ method blank, null, ...
+    + constants.js                          
     + ...
-views                                      : Chứa component của web. 
-    |_ admin                                 Hiện tại chia làm 2 phần: 
-        |_ page                                 admin và customer
+views                                      : Chứa component của web. Hiện tại chia làm 2 phần: admin và customer
+    |_ admin                                 
+        |_ page                                 
             + login.vue
             + register.vue
             + ...
