@@ -159,7 +159,7 @@ export default {
     },
     {
       name:'test menu',
-      url:'#', 
+      url:'https://freshbrand.vn', 
       icon: 'fa fa-building'
     }
   ]
