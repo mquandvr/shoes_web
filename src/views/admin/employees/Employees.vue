@@ -9,14 +9,7 @@
       </b-input-group>
     </b-col>
     <b-col md="6" class="my-1" style="position: relative">
-      <b-button size="sm" class="mb-0 fa fa-plus-square" style="position: absolute; right: 15px; top: 5px;"> Thêm nhân viên</b-button>
-    </b-col>
-    <b-col md="6" class="my-1">
-        <b-form-group horizontal class="mb-0">
-            <b-input-group-append>
-              <b-btn @click="employeesAdd" class="btn-info">Thêm mới</b-btn>
-            </b-input-group-append>
-        </b-form-group>
+      <b-button @click="employeesAdd" size="sm" class="mb-0 fa fa-plus-square" style="position: absolute; right: 15px; top: 5px;"> Thêm nhân viên</b-button>
     </b-col>
     <b-col cols="12" xl="12">
       <transition name="slide">
