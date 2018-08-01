@@ -96,7 +96,7 @@ utils                                      : Xử lý chung. -> Ví dụ method 
     + constants.js                          
     + ...
 views                                      : Chứa component của web. Hiện tại chia làm 2 phần: admin và customer
-    |_ admin                                 
+    |_ admin                                -> chua toan bo UI phan admin(quan ly don hang, nhan vien, ....)
         |_ page                                 
             + login.vue
             + register.vue
@@ -104,6 +104,6 @@ views                                      : Chứa component của web. Hiện 
         |_ nhanvie\n
             + ...
         |_ ...
-    |_ customer
+    |_ customer                             -> chua toan bo UI phan khach hang (trang chu, san pham, gio hang, ...)
         + ...
 ```
