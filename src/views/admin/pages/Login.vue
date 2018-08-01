@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { AUTH_REQUEST } from '@/actions/authAction'
+import { AUTH_REQUEST } from '@/store/modules/auth/auth-mutation-types'
 
 export default {
   name: 'Login',
