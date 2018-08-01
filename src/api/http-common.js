@@ -1,8 +1,8 @@
 import axios from 'axios'
-import cons from '@/api/http-common'
+//import cons from '@/api/http-common'
 
 export const HTTP = axios.create({
-  baseURL: cons.HTTP_REQUEST_URL,
+  baseURL: 'https://www.yesno.wtf/api/',
   headers: {
     Authorization: 'Bearer {token}'
   }
