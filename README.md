@@ -11,6 +11,7 @@ This is UI module for SHOES project
 #### Cài đặt thư viện
  
 ```
+    npm install -g @vue/cli-service-global
     npm install
 ```
 
@@ -18,6 +19,16 @@ This is UI module for SHOES project
 
 ```
     npm run serve
+```
+
+## Build
+```
+    npm run build
+```
+
+## Lint
+```
+    npm run lint
 ```
 
 ## Tài liệu tham khảo
@@ -32,15 +43,33 @@ This is UI module for SHOES project
 - [ES6](https://devhints.io/es6)
 
 ## Cấu trúc WEB
+#### Cấu trúc thư mục cha:
+```
+root
+    |_ dist          : Chứa css, js, img,.. của template không nên thay đổi nếu không thực sự cần thiết
 
- Tham khảo cấu trúc web bên dưới để thống nhất code:
-    
+    |_ node_modules  : Chứa modules của third party và custom modules
+
+    |_ public        : Chứa images chung
+
+    |_ src
+
+    |_ tests
+       + e2e
+       + unit
+
+    config files...
+```
+#### Cấu trúc thư mục con
 ```
 api                                        : common liên kết tới api. 
     http-common.js                     
-asset                                      
+assets                                      
     |_ scss
         + ...
+    |_ js
+        + ...
+action                                      : chứa các action của web
 containers                                 : Khung sườn chính của web. Hiện tại chia làm 2 phần: admin và customer
     |_ admin                                  
         + DefaultContainer.vue               

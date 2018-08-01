@@ -19,12 +19,12 @@ export default {
     },
     {
       name: 'Nhân viên',
-      url: '/people/employees',
+      url: '/admin/employees',
       icon: 'cui-user'
     },
     {
       name: 'Khách hàng',
-      url: '/people/customer',
+      url: '/customers',
       icon: 'cui-people'
     },
     {
@@ -39,7 +39,7 @@ export default {
     {
       name: 'Cửa hàng',
       url: '/theme/colors',
-      icon: 'fa fa-industry'
+      icon: 'fa fa-building'
     },
     {
       name: 'Nhà cung cấp',
@@ -58,6 +58,11 @@ export default {
     {
       name: 'Hàng hóa',
       url: '/theme/colors',
+      icon: 'fa fa-product-hunt'
+    },
+    {
+      name: 'Danh mục',
+      url: '/merchandise/categories',
       icon: 'fa fa-product-hunt'
     },
     {
