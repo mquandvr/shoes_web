@@ -27,23 +27,15 @@ const EmployeesAdd = () => import('@/views/admin/employees/EmployeesAdd')
 // Categories
 const Categories = () => import('@/views/admin/merchandise/categories/Categories')
 
+// Stores
+const Stores = () => import('@/views/admin/stores/Stores')
+const StoreAdd = () => import('@/views/admin/stores/StoreAdd')
+
+// Providers
+const Providers = () => import('@/views/admin/providers/Providers')
+const ProviderAdd = () => import('@/views/admin/providers/ProviderAdd')
+
 Vue.use(Router)
-
-const ifNotAuthenticated = (to, from, next) => {
-  if (!store.getters.isAuthenticated) {
-   next()
-   return
-  }
-  next('/')
-}
-
-const ifAuthenticated = (to, from, next) => {
-  if (store.getters.isAuthenticated) {
-   next()
-   return
-  }
-  next('/login')
-}
 
 const router = new Router({
   mode: 'history', // https://router.vuejs.org/api/#mode
@@ -93,7 +85,6 @@ const router = new Router({
           children: [
             {
               path: 'employees',
-              name: 'Employees',
               component: Employees,
               meta: { requiresAuth: true }
             },
@@ -125,10 +116,50 @@ const router = new Router({
             },
           ]
         },
+        {
+          path: 'stores',
+          meta: { label: 'Store'},
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: Stores,
+              meta: { requiresAuth: true }
+            },
+            {
+              path: 'create',
+              name: 'StoreAdd',
+              component: StoreAdd,
+              meta: { requiresAuth: true }
+            }
+          ]
+        },
+        {
+          path: 'providers',
+          name: 'Providers',
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: Providers,
+              meta: { requiresAuth: true }
+            },
+            {
+              path: 'create',
+              name: 'ProviderAdd',
+              component: ProviderAdd,
+              meta: { requiresAuth: true }
+            }
+          ]
+        }
       ]
     },
     {
-      path: '404',
+      path: '*',
       name: 'Page404',
       component: Page404
     },
@@ -140,7 +171,7 @@ const router = new Router({
     {
       path: 'login',
       name: 'Login',
-      component: Login
+      component: Login,
     },
     {
       path: 'register',
@@ -156,7 +187,7 @@ router.beforeEach((to, from, next) => {
     // if not, redirect to login page.
     if (!store.getters.isAuthenticated) {
       next({
-        path: '/login',
+        name: 'Login',
         query: { redirect: to.fullPath }
       })
     } else {

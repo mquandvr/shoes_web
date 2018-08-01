@@ -124,6 +124,16 @@
               </nav>    
             </b-col>
           </b-row>
+          <hr>
+          <b-container>
+            <b-row>
+              <b-col cols="auto" class="mr-auto"></b-col>
+              <b-col cols="auto">
+                <b-button variant="secondary" style="margin-right: 20px">Hủy bỏ</b-button>
+                <b-button variant="success" >Thêm</b-button>
+              </b-col>
+            </b-row>
+          </b-container>
         </b-form>
       </b-card>
       </transition>
@@ -207,7 +217,7 @@ export default {
       this.currentPage = 1
     },
     employeesAdd () {
-      this.$router.push({name:'EmployeesAdd'})
+      this.$router.push({name:'EmployeeAdd'})
     }
 
 
