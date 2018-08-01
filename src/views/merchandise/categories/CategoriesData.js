@@ -1,0 +1,25 @@
+const categoriesData = [
+  {id: 0, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 1, name: 'Máy móc', description: "Máy móc cho người"},
+  {id: 2, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 3, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 4, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 5, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 6, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 7, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 8, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 9, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 10, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 11, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 12, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 13, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 14, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 15, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 16, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 17, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 18, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 19, name: 'Thức ăn', description: "Thức ăn cho người"},
+  {id: 20, name: 'Thức ăn', description: "Thức ăn cho người"},
+]
+
+export default categoriesData
