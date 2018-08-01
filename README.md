@@ -48,6 +48,8 @@ This is UI module for SHOES project
 root
     |_ dist          : Chứa css, js, img,.. của template không nên thay đổi nếu không thực sự cần thiết
 
+    |_configs        : chứa tất cả các custom config của web
+
     |_ node_modules  : Chứa modules của third party và custom modules
 
     |_ public        : Chứa images chung
@@ -58,7 +60,7 @@ root
        + e2e
        + unit
 
-    config files...
+    framework and thirdparty config files...
 ```
 #### Cấu trúc thư mục con
 ```
@@ -69,7 +71,6 @@ assets
         + ...
     |_ js
         + ...
-action                                      : chứa các action của web
 containers                                 : Khung sườn chính của web. Hiện tại chia làm 2 phần: admin và customer
     |_ admin                                  
         + DefaultContainer.vue               
