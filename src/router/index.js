@@ -58,7 +58,9 @@ const Register = () => import('@/views/pages/Register')
 const Users = () => import('@/views/users/Users')
 const User = () => import('@/views/users/User')
 
+// Employees
 const Employees = () => import('@/views/people/Employees')
+const EmployeesAdd = () => import('@/views/people/EmployeesAdd')
 
 Vue.use(Router)
 
@@ -119,6 +121,11 @@ export default new Router({
               path: 'employees',
               name: 'Employees',
               component: Employees,
+            },
+            {
+              path: 'create',
+              name: 'EmployeesAdd',
+              component: EmployeesAdd,
             }
           ]
         },

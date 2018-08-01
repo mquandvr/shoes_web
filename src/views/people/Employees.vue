@@ -10,6 +10,13 @@
           </b-input-group>
         </b-form-group>
     </b-col>
+    <b-col md="6" class="my-1">
+        <b-form-group horizontal class="mb-0">
+            <b-input-group-append>
+              <b-btn @click="employeesAdd" class="btn-info">Thêm mới</b-btn>
+            </b-input-group-append>
+        </b-form-group>
+    </b-col>
     <b-col cols="12" xl="12">
       <transition name="slide">
       <b-card :header="caption">
@@ -118,6 +125,9 @@ export default {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length
       this.currentPage = 1
+    },
+    employeesAdd () {
+      this.$router.push({name:'EmployeesAdd'})
     }
 
   }
