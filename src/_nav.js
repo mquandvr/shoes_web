@@ -151,6 +151,11 @@ export default {
       name: 'Khuyến mãi',
       url: '/theme/colors',
       icon: 'fa fa-building'
+    },
+    {
+      name:'test menu',
+      url:'#', 
+      icon: 'fa fa-building'
     }
   ]
 }
