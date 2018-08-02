@@ -158,7 +158,7 @@ export default {
       icon: 'fa fa-building'
     },
     {
-      name:'test menu',
+      name:'Khách hàng',
       url:'https://freshbrand.vn', 
       icon: 'fa fa-building'
     }
