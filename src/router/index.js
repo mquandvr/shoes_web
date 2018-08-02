@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+//Test
+const Test =() => import('@/views/test/Test')
+
 // Containers
 const DefaultContainer = () => import('@/containers/DefaultContainer')
 
@@ -22,6 +25,10 @@ const User = () => import('@/views/users/User')
 const Employees = () => import('@/views/admin/employees/Employees')
 const Categories = () => import('@/views/merchandise/categories/Categories')
 
+//Customers
+const Customers =() => import('@/views/admin/customer/Customers')
+const Customer =() => import('@/views/admin/customer/Customer')
+
 Vue.use(Router)
 
 export default new Router({
@@ -29,6 +36,7 @@ export default new Router({
   linkActiveClass: 'open active',
   scrollBehavior: () => ({ y: 0 }),
   routes: [
+    
     {
       path: '/',
       redirect: '/dashboard',
@@ -92,6 +100,26 @@ export default new Router({
             },
           ]
         },
+        {
+          path: 'customers',
+          name: 'Customers',
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: Customers,
+            },
+            {
+              path: ':id',
+              meta: { label: 'User Details'},
+              name: 'Customer',
+              component: Customer,
+            },
+          ]
+        },
+
       {
         path: '/pages',
         redirect: '/pages/404',

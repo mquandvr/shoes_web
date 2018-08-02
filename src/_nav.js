@@ -156,6 +156,30 @@ export default {
       name: 'Khuyến mãi',
       url: '/theme/colors',
       icon: 'fa fa-building'
+    },
+    {
+      title: true,
+      name: 'Menu Mới',
+      class: '',
+      wrapper: {
+        element: '',
+        attributes: {}
+      }
+    },
+    {
+      name: 'Menu item 1',
+      url: '/page/hello',
+      icon: 'fa fa-google'
+    },
+    {
+      name: 'Menu item 2',
+      url: '/page/page2',
+      icon: 'fa fa-facebook'
+    },
+    {
+      name: 'Menu item 3',
+      url: '/page/page3',
+      icon: 'fa fa-linkedin'
     }
   ]
 }

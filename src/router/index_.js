@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+
+
 // Containers
 const DefaultContainer = () => import('@/containers/DefaultContainer')
 
@@ -65,6 +67,11 @@ export default new Router({
   linkActiveClass: 'open active',
   scrollBehavior: () => ({ y: 0 }),
   routes: [
+    {
+      path: '/test',
+      name: 'Test',
+      component: Test
+    },
     {
       path: '/',
       redirect: '/dashboard',
