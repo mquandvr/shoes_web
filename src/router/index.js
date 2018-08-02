@@ -102,16 +102,27 @@ const router = new Router({
               component: EmployeesAdd,
               meta: { requiresAuth: true }
             },
-            {
-              path: 'customer',
-              component: Customer,
-              meta: { requiresAuth: true }
-            },
+            
             {
               path: 'customers',
               name: 'Customers',
-              component: Customers,
-              meta: { requiresAuth: true }
+              meta: { requiresAuth: true },
+              component: {
+                render (c) { return c('router-view') }
+              },
+              children: [
+                {
+                  path: '',
+                  component: Customers,
+                  meta: { requiresAuth: true }
+                },
+                {
+                  path: ':id',
+                  meta: { label: 'Customer Details', requiresAuth: true},
+                  name: 'Customer',
+                  component: Customer,
+                },
+              ]
             }
           ]
         },
