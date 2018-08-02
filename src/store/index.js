@@ -6,9 +6,11 @@ Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
 
-export default new Vuex.Store({
+export const store = new Vuex.Store({
   modules: {
     auth
   },
   strict: debug
 })
+
+export default store

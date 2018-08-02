@@ -4,39 +4,46 @@
       <transition name="slide">
       <b-card :header="caption">
         <b-form>
-          <b-row>
-            <b-col cols="4" xl="4">
-              <p>Chi tiết nhà cung cấp</p>
-              <p>Thông tin chi tiết nhà cung cấp để quản lý cho việc phục vụ sau này.</p>
-            </b-col>
-            <b-col cols="8" xl="8">
-                <b-row>
-                  <b-col cols="6" xl="6">
-                    <b-form-group>
-                      <label for="name">Tên nhà cung cấp</label>
-                      <b-form-input id="name"
-                                type="text"
-                                required
-                                placeholder="Cửa hàng A">
-                      </b-form-input>
-                    </b-form-group>
-                    <b-form-group id="address1"
-                              label="Địa chỉ"
-                              label-for="address">
-                      <b-form-input id="address"
-                                type="text"
-                                required
-                                placeholder="">
-                      </b-form-input>
-                    </b-form-group>
-                    <b-form-group id="role1"
-                                    label="Thuộc danh mục">
-                      <b-form-select v-model="selected" :options="categorys" class="mb-2 mr-sm-2 mb-sm-0"  />
-                    </b-form-group> 
-                  </b-col>                
-                </b-row>
-            </b-col>
-          </b-row>
+          <b-form-group horizontal
+                        breakpoint="lg"
+                        label="Chi tiết nhà cung cấp"
+                        label-size="lg"
+                        label-class="font-weight-bold pt-0"
+                        class="mb-0">
+            <b-form-group horizontal
+                          label="Tên nhà cung cấp"
+                          label-for="providerName"
+                          label-class="text-sm-right"
+                          >
+              <b-form-input 
+                            id="providerName"
+                            type="text"
+                            required
+                            placeholder="Cửa hàng A"
+                            >
+              </b-form-input>
+            </b-form-group>
+            <b-form-group horizontal
+                          id="address1"
+                          label="Địa chỉ"
+                          label-for="address"
+                          label-class="text-sm-right"
+                          >
+              <b-form-input id="address"
+                            type="text"
+                            required
+                            placeholder=""
+                            >
+              </b-form-input>
+            </b-form-group>
+            <b-form-group horizontal
+                          id="role1"    
+                          label="Thuộc danh mục"
+                          label-class="text-sm-right"
+                          >
+              <b-form-select v-model="selected" :options="categorys" class="mb-2 mr-sm-2 mb-sm-0"  />
+            </b-form-group> 
+          </b-form-group>  
           <hr>
           <b-container>
             <b-row>

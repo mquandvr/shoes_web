@@ -57,7 +57,7 @@ export default {
     },
     {
       name: 'Hàng hóa',
-      url: '/theme/colors',
+      url: '/products',
       icon: 'fa fa-product-hunt'
     },
     {

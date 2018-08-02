@@ -15,7 +15,7 @@ export const doLogin = ({commit}, user) => {
             localStorage.setItem(HTTP_ACCESS_TOKEN, token)
             // Add the following line:
             axios.defaults.headers.common['Authorization'] = token
-            commit(AUTH_SUCCESS, resp)
+            commit(AUTH_SUCCESS, token)
             //dispatch(USER_REQUEST)
             resolve(resp)
         })

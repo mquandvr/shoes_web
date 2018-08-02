@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from '../store'
+import {store} from '@/store/index'
+
+console.log("store" + store.getters.isAuthenticated )
 
 // Containers
 const DefaultContainer = () => import('@/containers/admin/DefaultContainer')
@@ -34,6 +36,10 @@ const StoreAdd = () => import('@/views/admin/stores/StoreAdd')
 // Providers
 const Providers = () => import('@/views/admin/providers/Providers')
 const ProviderAdd = () => import('@/views/admin/providers/ProviderAdd')
+
+// Products
+const Products = () => import('@/views/admin/products/Products')
+const ProductAdd = () => import('@/views/admin/products/ProductAdd')
 
 Vue.use(Router)
 
@@ -155,6 +161,26 @@ const router = new Router({
               meta: { requiresAuth: true }
             }
           ]
+        },
+        {
+          path: 'products',
+          name: 'Products',
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: Products,
+              meta: { requiresAuth: true }
+            },
+            {
+              path: 'create',
+              name: 'ProductAdd',
+              component: ProductAdd,
+              meta: { requiresAuth: true }
+            }
+          ]
         }
       ]
     },
@@ -164,17 +190,17 @@ const router = new Router({
       component: Page404
     },
     {
-      path: '500',
+      path: '/500',
       name: 'Page500',
       component: Page500
     },
     {
-      path: 'login',
+      path: '/login',
       name: 'Login',
       component: Login,
     },
     {
-      path: 'register',
+      path: '/register',
       name: 'Register',
       component: Register
     }
