@@ -9,7 +9,7 @@
       </b-input-group>
     </b-col>
     <b-col md="6" class="my-1" style="position: relative">
-      <b-button @click="employeesAdd" size="sm" class="mb-0 fa fa-plus-square" style="position: absolute; right: 15px; top: 5px;"> Thêm nhân viên</b-button>
+      <b-button @click="storeAdd" size="sm" class="mb-0 fa fa-plus-square" style="position: absolute; right: 15px; top: 5px;"> Thêm cửa hàng</b-button>
     </b-col>
     <b-col cols="12" xl="12">
       <transition name="slide">
@@ -18,17 +18,11 @@
           <template slot="id" slot-scope="data">
             <strong>{{data.item.id}}</strong>
           </template>
-          <template slot="email" slot-scope="data">
-            <strong>{{data.item.email}}</strong>
-          </template>
           <template slot="name" slot-scope="data">
             <strong>{{data.item.name}}</strong>
           </template>
-          <template slot="phone" slot-scope="data">
-            <strong>{{data.item.phone}}</strong>
-          </template>
-          <template slot="registered" slot-scope="data">
-            <strong>{{data.item.registered}}</strong>
+          <template slot="address" slot-scope="data">
+            <strong>{{data.item.address}}</strong>
           </template>
           <template slot="status" slot-scope="data">
             <b-badge :variant="getBadge(data.item.status)">{{data.item.status}}</b-badge>
@@ -49,13 +43,13 @@
 </template>
 
 <script>
-import employeesData from './EmployeesData'
+import storeData from './StoreData'
 export default {
-  name: 'Employees',
+  name: 'Stores',
   props: {
     caption: {
       type: String,
-      default: 'Nhân viên'
+      default: 'Cửa hàng'
     },
     hover: {
       type: Boolean,
@@ -80,15 +74,11 @@ export default {
   },
   data: () => {
     return {
-      items: employeesData.filter((user) => user.id < 42),
+      items: storeData.filter((user) => user.id < 42),
       fields: [
         {key: 'id', label: 'STT', sortable: true},
-        {key: 'email', label: 'Email', sortable: true},
         {key: 'name', label: 'Tên', sortable: true},
-        {key: 'phone', label: 'SĐT', sortable: true},
-        {key: 'registered', label: 'Ngày tạo', sortable: true},
-        {key: 'status', label: 'Trạng thái', sortable: true},
-        { key: 'actions', label: 'Actions' }
+        {key: 'address', label: 'Dia chi', sortable: true}
       ],
       currentPage: 1,
       perPage: 5,
@@ -120,8 +110,8 @@ export default {
       this.totalRows = filteredItems.length
       this.currentPage = 1
     },
-    employeesAdd () {
-      this.$router.push({name:'EmployeesAdd'})
+    storeAdd () {
+      this.$router.push({name:'StoreAdd'})
     }
 
   }

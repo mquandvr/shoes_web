@@ -9,7 +9,7 @@
       </b-input-group>
     </b-col>
     <b-col md="6" class="my-1" style="position: relative">
-      <b-button size="sm" class="mb-0 fa fa-plus-square" style="position: absolute; right: 15px; top: 5px;"> Thêm danh mục</b-button>
+      <b-button @click="employeesAdd" size="sm" class="mb-0 fa fa-plus-square" style="position: absolute; right: 15px; top: 5px;"> Thêm nhà cung cấp</b-button>
     </b-col>
     <b-col cols="12" xl="12">
       <transition name="slide">
@@ -21,13 +21,19 @@
           <template slot="name" slot-scope="data">
             <strong>{{data.item.name}}</strong>
           </template>
-          <template slot="description" slot-scope="data">
-            <strong>{{data.item.description}}</strong>
+          <template slot="address" slot-scope="data">
+            <strong>{{data.item.address}}</strong>
+          </template>
+          <template slot="category" slot-scope="data">
+            <strong>{{data.item.category}}</strong>
+          </template>
+          <template slot="status" slot-scope="data">
+            <b-badge :variant="getBadge(data.item.status)">{{data.item.status}}</b-badge>
           </template>
           <template slot="actions" slot-scope="row">
-            <b-button size="sm" class="mr-1 fa fa-eye"> </b-button>
-            <b-button size="sm" class="mr-1 fa fa-pencil-square-o"> </b-button>
-            <b-button size="sm" class="mr-1 fa fa-trash-o"></b-button>
+            <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1 fa fa-eye"> </b-button>
+            <b-button size="sm" @click.stop="row.toggleDetails" class="mr-1 fa fa-pencil-square-o"> </b-button>
+            <b-button size="sm" @click.stop="row.toggleDetails" class="mr-1 fa fa-trash-o"></b-button>
           </template>
         </b-table>
         <nav>
@@ -40,13 +46,13 @@
 </template>
 
 <script>
-import categoriesData from './CategoriesData'
+import providerData from './ProviderData'
 export default {
-  name: 'Categories',
+  name: 'Providers',
   props: {
     caption: {
       type: String,
-      default: 'Danh mục'
+      default: 'Nhà cung cấp'
     },
     hover: {
       type: Boolean,
@@ -71,12 +77,12 @@ export default {
   },
   data: () => {
     return {
-      items: categoriesData.filter((user) => user.id < 42),
+      items: providerData.filter((user) => user.id < 42),
       fields: [
         {key: 'id', label: 'STT', sortable: true},
         {key: 'name', label: 'Tên', sortable: true},
-        {key: 'description', label: 'Mô tả', sortable: true},
-        { key: 'actions', label: 'Actions' }
+        {key: 'address', label: 'Dia chi', sortable: true},
+        {key: 'category', label: 'Hang Hoa', sortable: true},
       ],
       currentPage: 1,
       perPage: 5,
@@ -87,12 +93,29 @@ export default {
   computed: {
   },
   methods: {
+    getBadge (status) {
+      return status === 'Active' ? 'success'
+        : status === 'Inactive' ? 'secondary'
+          : status === 'Pending' ? 'warning'
+            : status === 'Banned' ? 'danger' : 'primary'
+    },
     getRowCount (items) {
       return items.length
     },
+    userLink (id) {
+      return `users/${id.toString()}`
+    },
+    rowClicked (item) {
+      const userLink = this.userLink(item.id)
+      this.$router.push({path: userLink})
+    },
     onFiltered (filteredItems) {
+      // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length
       this.currentPage = 1
+    },
+    employeesAdd () {
+      this.$router.push({name:'ProviderAdd'})
     }
 
   }

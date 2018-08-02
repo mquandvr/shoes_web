@@ -38,7 +38,7 @@
               <tr>
                 <td><input type="checkbox" name="" id=""></td>
                 <td>982342823</td>
-                <td><a href="http://localhost:8080/#/customers/0">Trần Văn Dũng</a></td>
+                <td><a href="http://localhost:8080/admin/customer">Trần Văn Dũng</a></td>
                 <td>Bán lẻ</td>
                 <td>vandung@freshbrand.vn</td>
                 <td>01689064929</td>
@@ -48,7 +48,7 @@
               <tr>
                 <td><input type="checkbox" name="" id=""></td>
                 <td>982342118</td>
-                <td><a href="http://localhost:8080/#/customers/0">Trần Văn Dũng</a></td>
+                <td><a href="http://localhost:8080/admin/customer">Trần Văn Dũng</a></td>
                 <td>Bán lẻ</td>
                 <td>vandung@freshbrand.vn</td>
                 <td>01689064928</td>

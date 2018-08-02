@@ -24,7 +24,7 @@ export default {
     },
     {
       name: 'Khách hàng',
-      url: '/customers',
+      url: '/admin/customers',
       icon: 'cui-people'
     },
     {
@@ -38,12 +38,12 @@ export default {
     },
     {
       name: 'Cửa hàng',
-      url: '/theme/colors',
+      url: '/stores',
       icon: 'fa fa-building'
     },
     {
       name: 'Nhà cung cấp',
-      url: '/theme/colors',
+      url: '/providers',
       icon: 'fa fa-industry'
     },
     {
