@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { AUTH_REQUEST } from '@/actions/authAction'
+import { AUTH_REQUEST } from '@/store/modules/auth/auth-mutation-types'
 
 export default {
   name: 'Login',
@@ -60,7 +60,11 @@ export default {
       const { username, password } = this
       this.$store.dispatch(AUTH_REQUEST, { username, password })
       .then(() => {
-        this.$router.push('/')
+        if (this.$route.query.redirect) {
+          this.$router.push(this.$route.query.redirect)
+        } else {
+          this.$router.push('/')
+        }
       })
       .catch(err => console.log(err))
     },

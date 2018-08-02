@@ -42,7 +42,7 @@
 
 <script>
 import { HeaderDropdown as AppHeaderDropdown } from '@coreui/vue'
-import { AUTH_LOGOUT } from '@/actions/authAction'
+import { AUTH_LOGOUT } from '@/store/modules/auth/auth-mutation-types'
 export default {
   name: 'DefaultHeaderDropdownAccnt',
   components: {

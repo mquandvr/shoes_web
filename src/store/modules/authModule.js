@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { AUTH_REQUEST, AUTH_SUCCESS, AUTH_ERROR, AUTH_LOGOUT } from '@/actions/authAction'
+import { AUTH_REQUEST, AUTH_SUCCESS, AUTH_ERROR, AUTH_LOGOUT } from './auth/auth-mutation-types'
 
 // initial state
 const state = {
@@ -38,6 +38,7 @@ const actions = {
             
             // const token = 'eyJz93a...k4laUWw'
             // localStorage.setItem('user-token', token)
+            // axios.defaults.headers.common['Authorization'] = token
             // commit(AUTH_SUCCESS, token)
         })
     },

@@ -9,7 +9,7 @@
       </b-input-group>
     </b-col>
     <b-col md="6" class="my-1" style="position: relative">
-      <b-button @click="employeesAdd" size="sm" class="mb-0 fa fa-plus-square" style="position: absolute; right: 15px; top: 5px;"> Thêm nhân viên</b-button>
+      <b-button size="sm" v-b-modal.category-popup class="mb-0 fa fa-plus-square" style="position: absolute; right: 15px; top: 5px;"> Thêm danh mục</b-button>
     </b-col>
     <b-col cols="12" xl="12">
       <transition name="slide">
@@ -18,25 +18,16 @@
           <template slot="id" slot-scope="data">
             <strong>{{data.item.id}}</strong>
           </template>
-          <template slot="email" slot-scope="data">
-            <strong>{{data.item.email}}</strong>
-          </template>
           <template slot="name" slot-scope="data">
             <strong>{{data.item.name}}</strong>
           </template>
-          <template slot="phone" slot-scope="data">
-            <strong>{{data.item.phone}}</strong>
-          </template>
-          <template slot="registered" slot-scope="data">
-            <strong>{{data.item.registered}}</strong>
-          </template>
-          <template slot="status" slot-scope="data">
-            <b-badge :variant="getBadge(data.item.status)">{{data.item.status}}</b-badge>
+          <template slot="description" slot-scope="data">
+            <strong>{{data.item.description}}</strong>
           </template>
           <template slot="actions" slot-scope="row">
-            <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1 fa fa-eye"> </b-button>
-            <b-button size="sm" @click.stop="row.toggleDetails" class="mr-1 fa fa-pencil-square-o"> </b-button>
-            <b-button size="sm" @click.stop="row.toggleDetails" class="mr-1 fa fa-trash-o"></b-button>
+            <b-button v-b-modal.category-popup size="sm" class="mr-1 fa fa-eye"> </b-button>
+            <b-button v-b-modal.category-popup size="sm" class="mr-1 fa fa-pencil-square-o"> </b-button>
+            <b-button v-b-modal.delete-confirm-popup size="sm" class="mr-1 fa fa-trash-o"></b-button>
           </template>
         </b-table>
         <nav>
@@ -45,17 +36,40 @@
       </b-card>
       </transition>
     </b-col>
+    <b-modal id="delete-confirm-popup" ok-title="Đồng ý" cancel-title="Hủy" @ok="handleOk" @shown="clearName" ref="modal" centered title="Xác nhận">
+      <p class="my-4">Bạn có chắc muốn xóa danh mục này?</p>
+    </b-modal>
+    <b-modal id="category-popup" centered size="lg"  ok-title="Thêm" cancel-title="Hủy" @ok="handleOk" @shown="clearName" ref="modal" title="Thêm danh mục">
+      <form @submit.stop.prevent="handleSubmit">
+        <b-container fluid>
+          <b-form-group horizontal
+                  :label-cols="2"
+                  label="Tên:"
+                  label-for="category-name">
+          <b-form-input id="category-name"/>
+          </b-form-group>
+          <b-form-group horizontal
+                  :label-cols="2"
+                  label="Mô tả:"
+                  label-for="category-description">
+              <textarea :value="my_comment" :rows="3" :max-rows="5" id="category-description"
+                  class="form-control"
+                  @change="changeComment" />
+          </b-form-group>
+        </b-container>
+      </form>
+    </b-modal>
   </b-row>
 </template>
 
 <script>
-import employeesData from './EmployeesData'
+import categoriesData from './CategoriesData'
 export default {
-  name: 'Employees',
+  name: 'Categories',
   props: {
     caption: {
       type: String,
-      default: 'Nhân viên'
+      default: 'Danh mục'
     },
     hover: {
       type: Boolean,
@@ -80,14 +94,11 @@ export default {
   },
   data: () => {
     return {
-      items: employeesData.filter((user) => user.id < 42),
+      items: categoriesData.filter((user) => user.id < 42),
       fields: [
         {key: 'id', label: 'STT', sortable: true},
-        {key: 'email', label: 'Email', sortable: true},
         {key: 'name', label: 'Tên', sortable: true},
-        {key: 'phone', label: 'SĐT', sortable: true},
-        {key: 'registered', label: 'Ngày tạo', sortable: true},
-        {key: 'status', label: 'Trạng thái', sortable: true},
+        {key: 'description', label: 'Mô tả', sortable: true},
         { key: 'actions', label: 'Actions' }
       ],
       currentPage: 1,
@@ -99,29 +110,12 @@ export default {
   computed: {
   },
   methods: {
-    getBadge (status) {
-      return status === 'Active' ? 'success'
-        : status === 'Inactive' ? 'secondary'
-          : status === 'Pending' ? 'warning'
-            : status === 'Banned' ? 'danger' : 'primary'
-    },
     getRowCount (items) {
       return items.length
     },
-    userLink (id) {
-      return `users/${id.toString()}`
-    },
-    rowClicked (item) {
-      const userLink = this.userLink(item.id)
-      this.$router.push({path: userLink})
-    },
     onFiltered (filteredItems) {
-      // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length
       this.currentPage = 1
-    },
-    employeesAdd () {
-      this.$router.push({name:'EmployeesAdd'})
     }
 
   }
