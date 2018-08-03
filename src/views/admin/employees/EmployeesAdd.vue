@@ -4,101 +4,129 @@
       <transition name="slide">
       <b-card :header="caption">
         <b-form>
-          <b-row>
-            <b-col cols="4" xl="4">
-              <p>Chi tiết nhân viên</p>
-              <p>Thông tin chi tiết nhân viên để quản lý cho việc phục vụ sau này.</p>
-            </b-col>
-            <b-col cols="8" xl="8">
-                <b-row>
-                  <b-col cols="6" xl="6">
-                    <b-form-group>
-                      <label for="name">Tên nhân viên:</label>
-                      <b-form-input id="name"
-                                type="text"
-                                required
-                                placeholder="Nguyễn văn A">
-                      </b-form-input>
-                    </b-form-group>
-                    <b-form-group id="phone1"
-                              label="Số điện thoại:"
-                              label-for="phone">
-                      <b-form-input id="phone"
-                                type="text"
-                                required
-                                placeholder="">
-                      </b-form-input>
-                    </b-form-group>
-                    <b-form-group id="address1"
-                              label="Địa chỉ:"
-                              label-for="address">
-                      <b-form-input id="address"
-                                type="text"
-                                required
-                                placeholder="">
-                      </b-form-input>
-                    </b-form-group>                  
-                    <b-form-group id="birthay1"
-                              label="Ngày sinh:"
-                              label-for="birthay">
-                        <b-input-group>
-                          <b-input-group-text slot="append">
-                              <strong class="text-danger">!</strong>
-                          </b-input-group-text>
-                          <b-form-input></b-form-input>
-                        </b-input-group>
-                    </b-form-group>
-                  </b-col>
-                  <b-col cols="6" xl="6">
-                    <b-form-group id="email1"
-                              label="Email:"
-                              label-for="email">
-                      <b-form-input id="email"
-                                type="text"
-                                required
-                                placeholder="">
-                      </b-form-input>
-                    </b-form-group>
-                    <b-form-group id="password1"
-                              label="Mật khẩu:"
-                              label-for="password">
-                      <b-form-input id="password"
-                                type="text"
-                                required
-                                placeholder="">
-                      </b-form-input>
-                    </b-form-group>
-                    <b-form-group id="rePassword1"
-                              label="Nhập lại mật khẩu:"
-                              label-for="rePassword">
-                      <b-form-input id="rePassword"
-                                type="text"
-                                required
-                                placeholder="">
-                      </b-form-input>
-                    </b-form-group>
-                  </b-col>
-                </b-row>
-                <b-form-group id="note1"
-                              label="Ghi chú:"
-                              label-for="note">
-                    <b-form-textarea id="note"
-                      placeholder="Enter something"
-                      :rows="3"
-                      :max-rows="6">
-                    </b-form-textarea>  
-                  </b-form-group>  
-            </b-col>
-          </b-row>
+          <b-form-group horizontal
+                        breakpoint="lg"
+                        label="Chi tiết nhà cung cấp"
+                        label-size="lg"
+                        label-class="font-weight-bold pt-0"
+                        class="mb-0"
+                        >
+              <b-form-group horizontal
+                            id="employeeName1"
+                            label="Tên nhân viên"
+                            label-for="employeeName"
+                            label-class="text-sm-right"
+                            >
+                <b-form-input id="employeeName"
+                              type="text"
+                              required
+                              placeholder="Nguyễn văn A">
+                </b-form-input>
+              </b-form-group>
+              <b-form-group horizontal
+                            id="phone1"
+                            label="Số điện thoại:"
+                            label-for="phone"
+                            label-class="text-sm-right"
+                            >
+                <b-form-input id="phone"
+                              type="text"
+                              required
+                              placeholder=""
+                              >
+                </b-form-input>
+              </b-form-group>
+              <b-form-group horizontal
+                            id="address1"
+                            label="Địa chỉ:"
+                            label-for="address"
+                            label-class="text-sm-right"
+                            >
+                <b-form-input id="address"
+                              type="text"
+                              required
+                              placeholder=""
+                              >
+                </b-form-input>
+              </b-form-group>                  
+              <b-form-group horizontal
+                            id="birthay1"
+                            label="Ngày sinh:"
+                            label-for="birthay"
+                            label-class="text-sm-right"
+                            >
+                  <b-input-group>
+                    <b-input-group-text slot="append">
+                        <strong class="text-danger">!</strong>
+                    </b-input-group-text>
+                    <b-form-input></b-form-input>
+                  </b-input-group>
+              </b-form-group>
+              <b-form-group horizontal
+                            id="email1"
+                            label="Email:"
+                            label-for="email"
+                            label-class="text-sm-right"
+                            >
+                <b-form-input id="email"
+                              type="text"
+                              required
+                              placeholder=""
+                              >
+                </b-form-input>
+              </b-form-group>
+              <b-form-group horizontal
+                            id="password1"
+                            label="Mật khẩu:"
+                            label-for="password"
+                            label-class="text-sm-right"
+                            >
+                <b-form-input id="password"
+                          type="text"
+                          required
+                          placeholder="">
+                </b-form-input>
+              </b-form-group>
+              <b-form-group horizontal
+                            id="rePassword1"
+                            label="Nhập lại mật khẩu:"
+                            label-for="rePassword"
+                            label-class="text-sm-right"
+                            >
+                <b-form-input id="rePassword"
+                          type="text"
+                          required
+                          placeholder="">
+                </b-form-input>
+              </b-form-group>
+              <b-form-group horizontal
+                            id="note1"
+                            label="Ghi chú:"
+                            label-for="note"
+                            label-class="text-sm-right"
+                            >
+                <b-form-textarea id="note"
+                                  placeholder="Enter something"
+                                  :rows="3"
+                                  :max-rows="6"
+                                  >
+                </b-form-textarea>  
+              </b-form-group>  
+          </b-form-group>
           <hr>
-          <b-row>
-            <b-col cols="4" xl="4">
-              <p>Vai trò nhân viên</p>
-              <p>Cho phép phân quyền hạn của nhân viên cho tất cả chi nhánh.</p>
-            </b-col>
-            <b-col cols="8" xl="8">
-              <b-form-group id="role1"
-                              label="Chọn vai trò:">
+
+          <b-form-group horizontal
+                        breakpoint="lg"
+                        label="Vai trò nhân viên"
+                        label-size="lg"
+                        label-class="font-weight-bold pt-0"
+                        class="mb-0"
+                        >
+              <b-form-group horizontal
+                            id="role1"
+                            label="Chọn vai trò:"
+                            label-class="text-sm-right"
+                            >
                 <b-form-select v-model="selected" :options="roles" class="mb-2 mr-sm-2 mb-sm-0"  />
               </b-form-group>  
               <hr>
@@ -122,8 +150,8 @@
               <nav>
                 <b-pagination size="sm" :total-rows="getRowCount(items)" :per-page="perPage" v-model="currentPage" prev-text="Prev" next-text="Next" hide-goto-end-buttons/>
               </nav>    
-            </b-col>
-          </b-row>
+          </b-form-group>
+
           <hr>
           <b-container>
             <b-row>

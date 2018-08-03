@@ -1,1 +1,55 @@
 // Here you can add other styles
+$cl_border : rgb(200, 206, 211);
+$cl_white : #fff;
+.mg-l-15{margin-left: 15px;}
+.mg-b-50{margin-bottom: 50px;}
+.bd-l-1{border-left: 1px solid $cl_border;}
+.clear-both{clear: both;}
+.pd-t-15{padding-top: 15px}
+.table-noborder{
+    th, td{
+        border: none;
+    }
+    thead th{
+        border-bottom: 1px solid $cl_border;
+    }
+}
+.box_style{
+    background-color: $cl_white;
+    box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px 0 rgba(63,63,68,.15);
+    border-radius: 3px;
+    padding: 15px;
+    margin-bottom: 25px;
+    ._title{
+        font-weight: 600;
+        font-size: 15px;
+        margin-bottom: 10px;
+        a{
+            font-weight: 400;
+            padding-left: 15px;
+            font-size: 14px;
+        }
+    }
+    ._content{
+        li{
+            list-style: none;
+        }
+    }
+}
+.box_info{
+    img{
+        max-width: 80px;
+        max-height: 80px;
+        display: inline-block;
+        float: left;
+        border-radius: 50%;
+    }
+    ._info{
+        padding-left: 100px;
+        display: block;
+    }
+}
+.icon-order{
+    font-size: 60px;
+    color: $cl_border;
+}
