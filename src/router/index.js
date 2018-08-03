@@ -54,13 +54,13 @@ const router = new Router({
     {
       path: '/',
       redirect: '/dashboard',
-      name: 'Home',
+      name: 'Trang chủ',
       component: DefaultContainer,
       meta: { requiresAuth: true },
       children: [
         {
           path: 'dashboard',
-          name: 'Dashboard',
+          name: 'Trang chủ',
           component: Dashboard,
           meta: { requiresAuth: true }
         },
@@ -87,26 +87,28 @@ const router = new Router({
         },
         {
           path: 'admin',
-          meta: { label: 'People'},
+          meta: { label: 'Con người'},
+          redirect: '/admin/employees',
           component: {
             render (c) { return c('router-view') }
           },
           children: [
             {
               path: 'employees',
+              name: 'Nhân viên',
               component: Employees,
               meta: { requiresAuth: true }
             },
             {
-              path: 'create',
-              name: 'EmployeesAdd',
+              path: 'create-employee',
+              name: 'Nhân viên',
               component: EmployeesAdd,
               meta: { requiresAuth: true }
             },
             
             {
               path: 'customers',
-              name: 'Customers',
+              name: 'Khách hàng',
               meta: { requiresAuth: true },
               component: {
                 render (c) { return c('router-view') }
@@ -149,7 +151,7 @@ const router = new Router({
         },
         {
           path: 'stores',
-          meta: { label: 'Store'},
+          meta: { label: 'Cửa hàng'},
           component: {
             render (c) { return c('router-view') }
           },

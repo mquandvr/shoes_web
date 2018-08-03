@@ -57,7 +57,7 @@
                 label-text-align="right"
                 label="Ngày sinh:"
                 label-for="customerDateOfBirth">
-                <b-form-input id="customerDateOfBirth" size="sm" class="col-md-8 col-xs-8" placeholder="dd/MM/yyyy"/>
+                <datepicker id="customerDateOfBirth" placeholder="dd/MM/yyyy" format="dd/MM/yyyy"></datepicker>
               </b-form-group>
             </b-col>
           </b-row>
@@ -130,8 +130,13 @@
 
 <script>
 import employeesData from '../employees/EmployeesData'
+import Datepicker from 'vuejs-datepicker'
+
 export default {
   name: 'Thêm mới',
+  components : {
+    Datepicker
+  },
   props: {
     caption: {
       type: String,

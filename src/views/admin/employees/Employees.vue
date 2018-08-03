@@ -121,7 +121,7 @@ export default {
       this.currentPage = 1
     },
     employeesAdd () {
-      this.$router.push({name:'EmployeesAdd'})
+      this.$router.push({path: 'create-employee'})
     }
 
   }
