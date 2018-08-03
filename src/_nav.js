@@ -38,17 +38,17 @@ export default {
     },
     {
       name: 'Cửa hàng',
-      url: '/stores',
+      url: '/theme/colors',
       icon: 'fa fa-building'
     },
     {
       name: 'Nhà cung cấp',
-      url: '/providers',
+      url: '/theme/colors',
       icon: 'fa fa-industry'
     },
     {
       title: true,
-      name: 'Hàng hóa',
+      name: 'Sản phẩm',
       class: '',
       wrapper: {
         element: '',
@@ -56,9 +56,14 @@ export default {
       }
     },
     {
-      name: 'Hàng hóa',
+      name: 'Danh sách sản phẩm',
       url: '/theme/colors',
       icon: 'fa fa-product-hunt'
+    },
+    {
+      name: 'Quản lý kho',
+      url: '#',
+      icon: 'fa fa-product-hunt',
     },
     {
       name: 'Danh mục',
@@ -159,7 +164,7 @@ export default {
     },
     {
       name:'Khách hàng',
-      url:'https://freshbrand.vn', 
+      url:'#', 
       icon: 'fa fa-building'
     }
   ]
