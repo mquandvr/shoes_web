@@ -2,9 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import {store} from '@/store/index'
 
-//Test
-const Test =() => import('@/views/test/Test')
-
 // Containers
 const DefaultContainer = () => import('@/containers/admin/DefaultContainer')
 
@@ -40,7 +37,7 @@ const ProviderAdd = () => import('@/views/admin/providers/ProviderAdd')
 
 //Customers
 const Customers =() => import('@/views/admin/customer/Customers')
-const Customer =() => import('@/views/admin/customer/Customer')
+const CustomerAdd =() => import('@/views/admin/customer/CustomerAdd')
 
 // Products
 const Products = () => import('@/views/admin/products/Products')
@@ -121,10 +118,10 @@ const router = new Router({
                   meta: { requiresAuth: true }
                 },
                 {
-                  path: ':id',
-                  meta: { label: 'Customer Details', requiresAuth: true},
-                  name: 'Customer',
-                  component: Customer,
+                  path: 'create',
+                  name: 'Thêm khách hàng',
+                  component: CustomerAdd,
+                  meta: { requiresAuth: true }
                 },
               ]
             }

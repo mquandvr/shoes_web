@@ -9,7 +9,7 @@
       </b-input-group>
     </b-col>
     <b-col md="6" class="my-1" style="position: relative">
-      <b-button  size="sm" class="btn float-right btn-primary fa fa-plus-square" style="position: absolute; right: 15px; top: 5px;"> Thêm khách hàng</b-button>
+      <b-button @click="customerAdd" size="sm" class="btn float-right btn-primary fa fa-plus-square" style="position: absolute; right: 15px; top: 5px;"> Thêm khách hàng</b-button>
     </b-col>
     <b-col cols="12" xl="12">
       <transition name="slide">
@@ -121,9 +121,9 @@ export default {
       this.totalRows = filteredItems.length
       this.currentPage = 1
     },
-    // customersAdd () {
-    //   this.$router.push({name:'CustomersAdd'})
-    // }
+    customerAdd () {
+      this.$router.push({name:'Thêm khách hàng'})
+    }
 
   }
   
