@@ -8,7 +8,7 @@
       <SidebarToggler class="d-md-down-none" display="lg" />
       <b-navbar-nav class="d-md-down-none">
         <b-nav-item class="px-3" to="/dashboard">Trang chủ</b-nav-item>
-        <b-nav-item class="px-3" to="/users" exact>Nhân viên</b-nav-item>
+        <b-nav-item class="px-3" to="/admin/employees" exact>Nhân viên</b-nav-item>
         <b-nav-item class="px-3">Cài đặt</b-nav-item>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto">

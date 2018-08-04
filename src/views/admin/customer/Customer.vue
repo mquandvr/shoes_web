@@ -78,7 +78,8 @@ export default {
         {key: 'phone', label: 'Số điện thoại', sortable: true},
         {key: 'registered', label: 'Ngày tạo', sortable: true},
         {key: 'status', label: 'Trạng thái', sortable: true},
-        {key: 'actions', label: 'Actions'}
+        {key: 'actions', label: 'Actions'},
+        {key: 'address', lable: 'Address', sortable: true}
       ],
     }
   },

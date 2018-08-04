@@ -3,6 +3,7 @@ import { HTTP_ACCESS_TOKEN } from '@/utils/constants'
 import http from '@/api/http-common'
 import qs from 'qs'
 
+
 // actions
 export const doLogin = ({ commit }, data) => {
     return new Promise((resolve, reject) => {
@@ -32,6 +33,7 @@ export const doLogin = ({ commit }, data) => {
                 // resolve(respRole)
                 resolve(respToken)
             // })
+
         })
         .catch(err => {
             commit(AUTH_ERROR, err)
