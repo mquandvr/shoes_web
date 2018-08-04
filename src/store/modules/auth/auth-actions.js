@@ -1,23 +1,37 @@
 import { AUTH_REQUEST, AUTH_SUCCESS, AUTH_LOGOUT, AUTH_ERROR } from './auth-mutation-types'
 import { HTTP_ACCESS_TOKEN } from '@/utils/constants'
 import http from '@/api/http-common'
+import qs from 'qs'
 
 // actions
-export const doLogin = ({commit}, user) => {
-    console.log(user)
-    console.log('http '+ http)
-    commit(AUTH_REQUEST)
+export const doLogin = ({ commit }, data) => {
     return new Promise((resolve, reject) => {
-        commit(AUTH_REQUEST)
-        http.get()
-        .then(resp => {
-            // const token = resp.data.token
-            const token = 'eyJz93a...k4laUWw'
-            localStorage.setItem(HTTP_ACCESS_TOKEN, token)
 
-            commit(AUTH_SUCCESS, token)
-            //dispatch(USER_REQUEST)
-            resolve(resp)
+        const params = qs.stringify({
+            username: data.username,
+            password: data.password,
+            grant_type: 'password'
+        })
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }
+
+        commit(AUTH_REQUEST)
+        http.post('oauth/token', params, config)
+        .then(respToken => {
+            // dispatch("user/getUserRole", data)
+            // .then(respRole => {
+                // const token = resp.data.token
+                localStorage.setItem(HTTP_ACCESS_TOKEN, respToken.data.access_token)
+                
+                commit(AUTH_SUCCESS, respToken.data.access_token)
+                
+                // resolve(respRole)
+                resolve(respToken)
+            // })
         })
         .catch(err => {
             commit(AUTH_ERROR, err)

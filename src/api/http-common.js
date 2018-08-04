@@ -1,32 +1,42 @@
 import axios from 'axios'
-import { HTTP_REQUEST_URL, HTTP_ACCESS_TOKEN } from '@/utils/constants'
-import { AUTH_LOGOUT } from '@/store/modules/auth/auth-mutation-types'
+import { HTTP_PREFIX_URL, HTTP_ACCESS_TOKEN } from '@/utils/constants'
+import qs from 'qs'
+import { updateQueryStringParameter } from '@/utils/common'
 
 const http = axios.create({
-  baseURL: HTTP_REQUEST_URL
+  baseURL: HTTP_PREFIX_URL,
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
+  auth: {
+    username: 'hendi-client',
+    password: 'hendi-secret'
+  }
 })
 
-http.interceptors.response.use(undefined, function (err) {
-  return new Promise(function (resolve, reject) {
-    if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+http.interceptors.response.use(function (response) {
+  // Do something with response data
+  if (response.status === 401 && response.config && !response.config.__isRetryRequest) {
     // if you ever get an unauthorized, logout the user
-      this.$store.dispatch(AUTH_LOGOUT)
-    // you can also redirect to /login if needed !
-    }
-    Promise.reject(reject)
-    throw err;
-  });
+    this.$store.dispatch("doLogout")
+
+    return Promise.reject(response);
+  }
+  return response;
+}, function (error) {
+  // Do something with response error
+  return Promise.reject(error);
 });
+
+
 
 // Set the AUTH token for any request
 http.interceptors.request.use(function (config) {
-  const token = localStorage.getItem(HTTP_ACCESS_TOKEN);
-  if (token) {
-    http.defaults.headers.common['Authorization'] = token;
-  } else {
-    delete http.defaults.headers.common['Authorization'];
+  if (localStorage.getItem(HTTP_ACCESS_TOKEN)) {
+    config.url = updateQueryStringParameter(config.url, HTTP_ACCESS_TOKEN, localStorage.getItem(HTTP_ACCESS_TOKEN))
   }
-  return config;
+  return config
 });
 
 export default http
