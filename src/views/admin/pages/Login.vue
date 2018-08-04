@@ -72,7 +72,17 @@ export default {
                         if (this.$route.query.redirect) {
                             this.$router.push(this.$route.query.redirect)
                         } else {
-                            this.$router.push('/')
+                            if (this.$store.state.auth.permission) {
+                                if (this.$store.state.auth.permission === 'admin') {
+                                    this.$router.push({
+                                        name: 'AdminPage'
+                                    })
+                                } else {
+                                    this.$router.push({
+                                        name: 'Home'
+                                    })
+                                }
+                            }
                         }
                     })
                     .catch(err => console.log(err))

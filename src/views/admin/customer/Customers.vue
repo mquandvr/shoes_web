@@ -123,7 +123,7 @@ export default {
     },
     customerAdd () {
       this.$router.push({name:'Thêm khách hàng'})
-    }
+    },
 
   }
   

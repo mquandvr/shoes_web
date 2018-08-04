@@ -43,26 +43,48 @@ const CustomerAdd =() => import('@/views/admin/customer/CustomerAdd')
 const Products = () => import('@/views/admin/products/Products')
 const ProductAdd = () => import('@/views/admin/products/ProductAdd')
 
+// Customer
+// index
+const Home = () => import('@/views/customer/index')
+
 Vue.use(Router)
+
+const adminRole = {
+  requiresAuth: true,
+  adminRole: true,
+  customerAuth: false
+}
+
+const customerRole = {
+  adminRole: false,
+  customerAuth: true
+}
 
 const router = new Router({
   mode: 'history', // https://router.vuejs.org/api/#mode
   linkActiveClass: 'open active',
   scrollBehavior: () => ({ y: 0 }),
   routes: [
-    
     {
       path: '/',
-      redirect: '/dashboard',
-      name: 'Trang chủ',
+      name: 'Home',
+      component: Home,
+      meta: customerRole
+    },
+    {
+      path: '/admin',
+      redirect: {
+        name: 'Dashboard'
+      },
+      name: 'AdminPage',
       component: DefaultContainer,
-      meta: { requiresAuth: true },
+      meta: adminRole,
       children: [
         {
           path: 'dashboard',
-          name: 'Trang chủ',
+          name: 'Dashboard',
           component: Dashboard,
-          meta: { requiresAuth: true }
+          meta: adminRole
         },
         {
           path: 'merchandise',
@@ -75,41 +97,43 @@ const router = new Router({
               path: 'categories',
               name: 'Danh mục',
               component: Categories,
-              meta: { requiresAuth: true }
+              meta: adminRole
             },
             {
               path: 'typography',
               name: 'Typography',
               component: Typography,
-              meta: { requiresAuth: true }
+              meta: adminRole
             }
           ]
         },
         {
-          path: 'admin',
+          path: '',
           meta: { label: 'Con người'},
-          redirect: '/admin/employees',
+          redirect: {
+            name: 'Employees'
+          },
           component: {
             render (c) { return c('router-view') }
           },
           children: [
             {
               path: 'employees',
-              name: 'Nhân viên',
+              name: 'Employees',
               component: Employees,
-              meta: { requiresAuth: true }
+              meta: adminRole
             },
             {
               path: 'create-employee',
               name: 'Nhân viên',
               component: EmployeesAdd,
-              meta: { requiresAuth: true }
+              meta: adminRole
             },
             
             {
               path: 'customers',
               name: 'Khách hàng',
-              meta: { requiresAuth: true },
+              meta: adminRole,
               component: {
                 render (c) { return c('router-view') }
               },
@@ -117,95 +141,129 @@ const router = new Router({
                 {
                   path: '',
                   component: Customers,
-                  meta: { requiresAuth: true }
+                  meta: adminRole
                 },
                 {
                   path: 'create',
                   name: 'Thêm khách hàng',
                   component: CustomerAdd,
-                  meta: { requiresAuth: true }
+                  meta: adminRole
                 },
               ]
             }
           ]
         },
+        // {
+        //   path: '',
+        //   redirect: {
+        //     name : 'Users'
+        //   },
+        //   meta: { label: 'Users'},
+        //   component: {
+        //     render (c) { return c('router-view') }
+        //   },
+        //   children: [
+        //     {
+        //       path: 'users',
+        //       name: 'Users',
+        //       component: Users,
+        //       meta: adminRole
+        //     },
+        //     {
+        //       path: ':id',
+        //       meta: { label: 'User Details', requiresAuth: true},
+        //       name: 'User',
+        //       component: User,
+        //       meta: adminRole
+        //     },
+        //   ]
+        // },
         {
-          path: 'users',
-          meta: { label: 'Users'},
+          path: '',
+          redirect: {
+            name: 'Stores'
+          },
           component: {
             render (c) { return c('router-view') }
           },
           children: [
             {
-              path: '',
-              component: Users,
-              meta: { requiresAuth: true }
-            },
-            {
-              path: ':id',
-              meta: { label: 'User Details', requiresAuth: true},
-              name: 'User',
-              component: User,
-            },
-          ]
-        },
-        {
-          path: 'stores',
-          meta: { label: 'Cửa hàng'},
-          component: {
-            render (c) { return c('router-view') }
-          },
-          children: [
-            {
-              path: '',
+              path: 'stores',
+              name: 'Stores',
               component: Stores,
-              meta: { requiresAuth: true }
+              meta: adminRole,
+              // children: [
+              //   {
+              //     path: 'create',
+              //     name: 'StoreAdd',
+              //     component: StoreAdd,
+              //     meta: adminRole
+              //   },
+              //   {
+              //     path: 'edit/:storeId',
+              //     name: 'StoresEdit',
+              //     component: StoreAdd,
+              //     meta: adminRole
+              //   }
+              // ]
             },
             {
               path: 'create',
               name: 'StoreAdd',
               component: StoreAdd,
-              meta: { requiresAuth: true }
+              meta: adminRole
+            },
+            {
+              path: 'edit/:storeId',
+              name: 'StoresEdit',
+              component: StoreAdd,
+              meta: adminRole
             }
           ]
         },
         {
-          path: 'providers',
-          name: 'Providers',
+          path: '',
+          redirect: {
+            name: 'Providers'
+          },
           component: {
             render (c) { return c('router-view') }
           },
           children: [
             {
-              path: '',
+              path: 'providers',
+              name: 'Providers',
               component: Providers,
-              meta: { requiresAuth: true }
+              meta: adminRole
             },
             {
               path: 'create',
               name: 'ProviderAdd',
               component: ProviderAdd,
-              meta: { requiresAuth: true }
+              meta: adminRole
             }
           ]
         },
         {
-          path: 'products',
-          name: 'Products',
+          path: '',
+          redirect: {
+            name : 'Products'
+          },
           component: {
             render (c) { return c('router-view') }
           },
           children: [
             {
-              path: '',
+              path: 'products',
+              name: 'Products',
               component: Products,
-              meta: { requiresAuth: true }
+              meta: adminRole
             },
             {
               path: 'create',
               name: 'ProductAdd',
               component: ProductAdd,
-              meta: { requiresAuth: true }
+              meta: adminRole
             }
           ]
         }
@@ -235,6 +293,9 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+  const role = store.state.auth.permission
+  const adminRole = (to.matched.some(record => record.meta.adminRole))
+  const customerRole = (to.matched.some(record => record.meta.customerRole))
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.

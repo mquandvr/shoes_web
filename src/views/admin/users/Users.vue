@@ -88,6 +88,16 @@ export default {
       this.$router.push({path: userLink})
     }
 
+  },
+  
+  mounted () {
+    console.log('run get list user')
+    this.$store.dispatch('user/getUserList').
+    
+    then((res) => {
+      console.log(res)
+    })
+
   }
 }
 </script>

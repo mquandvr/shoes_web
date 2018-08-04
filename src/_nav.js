@@ -2,7 +2,7 @@ export default {
   items: [
     {
       name: 'Trang chủ',
-      url: '/dashboard',
+      url: '/admin/dashboard',
       icon: 'icon-home',
       badge: {
         variant: 'primary'
@@ -38,12 +38,12 @@ export default {
     },
     {
       name: 'Cửa hàng',
-      url: '/stores',
+      url: '/admin/stores',
       icon: 'fa fa-building'
     },
     {
       name: 'Nhà cung cấp',
-      url: '/providers',
+      url: '/admin/providers',
       icon: 'fa fa-industry'
     },
     {
@@ -57,12 +57,12 @@ export default {
     },
     {
       name: 'Hàng hóa',
-      url: '/products',
+      url: '/admin/products',
       icon: 'fa fa-product-hunt'
     },
     {
       name: 'Danh mục',
-      url: '/merchandise/categories',
+      url: '/admin/merchandise/categories',
       icon: 'fa fa-product-hunt'
     },
     {
