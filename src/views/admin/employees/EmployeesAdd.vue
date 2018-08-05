@@ -12,27 +12,32 @@
                         class="mb-0"
                         >
               <b-form-group horizontal
-                            id="employeeName1"
+                            id="fullName1"
                             label="Tên nhân viên"
-                            label-for="employeeName"
+                            label-for="fullName"
                             label-class="text-sm-right"
                             >
-                <b-form-input id="employeeName"
+                <b-form-input id="fullName"
                               type="text"
                               required
-                              placeholder="Nguyễn văn A">
-                </b-form-input>
+                              placeholder="Nguyễn văn A"
+                              v-model="data.fullName"
+                              ></b-form-input>
+                <b-form-invalid-feedback id="inputLiveFeedback">
+                  Enter at least 3 letters
+                </b-form-invalid-feedback>
               </b-form-group>
               <b-form-group horizontal
-                            id="phone1"
+                            id="mobilePhone1"
                             label="Số điện thoại:"
-                            label-for="phone"
+                            label-for="mobilePhone"
                             label-class="text-sm-right"
                             >
-                <b-form-input id="phone"
+                <b-form-input id="mobilePhone"
                               type="text"
                               required
                               placeholder=""
+                              v-model="data.mobilePhone"
                               >
                 </b-form-input>
               </b-form-group>
@@ -46,6 +51,7 @@
                               type="text"
                               required
                               placeholder=""
+                              v-model="data.address"
                               >
                 </b-form-input>
               </b-form-group>                  
@@ -55,12 +61,10 @@
                             label-for="birthay"
                             label-class="text-sm-right"
                             >
-                  <b-input-group>
-                    <b-input-group-text slot="append">
-                        <strong class="text-danger">!</strong>
-                    </b-input-group-text>
-                    <b-form-input></b-form-input>
-                  </b-input-group>
+                  <!-- <datepicker placeholder="Chọn ngày sinh" 
+                              :value="data.birthay"
+                              @keyup.native="updateField('birthay', $event.target.value)"
+                              ></datepicker> -->
               </b-form-group>
               <b-form-group horizontal
                             id="email1"
@@ -72,6 +76,21 @@
                               type="text"
                               required
                               placeholder=""
+                              v-model="data.email"
+                              >
+                </b-form-input>
+              </b-form-group>
+                            <b-form-group horizontal
+                            id="username1"
+                            label="Tên đăng nhập:"
+                            label-for="username"
+                            label-class="text-sm-right"
+                            >
+                <b-form-input id="username"
+                              type="text"
+                              required
+                              placeholder=""
+                              v-model="data.username"
                               >
                 </b-form-input>
               </b-form-group>
@@ -84,7 +103,9 @@
                 <b-form-input id="password"
                           type="text"
                           required
-                          placeholder="">
+                          placeholder=""
+                          v-model="data.password"
+                          >
                 </b-form-input>
               </b-form-group>
               <b-form-group horizontal
@@ -96,19 +117,22 @@
                 <b-form-input id="rePassword"
                           type="text"
                           required
-                          placeholder="">
+                          placeholder=""
+                          v-model="rePassword"
+                          >
                 </b-form-input>
               </b-form-group>
               <b-form-group horizontal
-                            id="note1"
+                            id="remark1"
                             label="Ghi chú:"
-                            label-for="note"
+                            label-for="remark"
                             label-class="text-sm-right"
                             >
-                <b-form-textarea id="note"
+                <b-form-textarea id="remark"
                                   placeholder="Enter something"
                                   :rows="3"
                                   :max-rows="6"
+                                  v-model="data.remark"
                                   >
                 </b-form-textarea>  
               </b-form-group>  
@@ -127,29 +151,21 @@
                             label="Chọn vai trò:"
                             label-class="text-sm-right"
                             >
-                <b-form-select v-model="selected" :options="roles" class="mb-2 mr-sm-2 mb-sm-0"  />
+                <b-form-select 
+                              v-model="data.role"
+                              :options="roles"
+                              class="mb-2 mr-sm-2 mb-sm-0"  />
+              </b-form-group> 
+              <b-form-group horizontal
+                            id="storeId"
+                            label="Chọn chi nhánh:"
+                            label-class="text-sm-right"
+                            >
+                <b-form-select 
+                              v-model="data.storeId"
+                              :options="stores" 
+                              class="mb-2 mr-sm-2 mb-sm-0"  />
               </b-form-group>  
-              <hr>
-              <label>Chi tiết thông tin phân quyền nhân viên</label>
-              <b-table :hover="hover" :filter="filter" :striped="striped" :bordered="bordered" :small="small" :fixed="fixed" responsive="sm" :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="rowClicked" @filtered="onFiltered">
-                <template slot="id" slot-scope="data">
-                  <strong>{{data.item.id}}</strong>
-                </template>
-                <template slot="vaitro" slot-scope="data">
-                  <strong>{{data.item.vaitro}}</strong>
-                </template>
-                <template slot="chinhanh" slot-scope="data">
-                  <strong>{{data.item.chinhanh}}</strong>
-                </template>
-                <template slot="actions" slot-scope="row">
-                  <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1 fa fa-eye"> </b-button>
-                  <b-button size="sm" @click.stop="row.toggleDetails" class="mr-1 fa fa-pencil-square-o"> </b-button>
-                  <b-button size="sm" @click.stop="row.toggleDetails" class="mr-1 fa fa-trash-o"></b-button>
-                </template>
-              </b-table>
-              <nav>
-                <b-pagination size="sm" :total-rows="getRowCount(items)" :per-page="perPage" v-model="currentPage" prev-text="Prev" next-text="Next" hide-goto-end-buttons/>
-              </nav>    
           </b-form-group>
 
           <hr>
@@ -158,7 +174,7 @@
               <b-col cols="auto" class="mr-auto"></b-col>
               <b-col cols="auto">
                 <b-button variant="secondary" style="margin-right: 20px">Hủy bỏ</b-button>
-                <b-button variant="success" >Thêm</b-button>
+                <b-button variant="success" @click="doAddEmployee" >Thêm</b-button>
               </b-col>
             </b-row>
           </b-container>
@@ -171,84 +187,66 @@
 
 <script>
 import employeesData from './EmployeesData'
+import { USER_REQUEST_UPDATE_USER } from '@/store/modules/admin/user/user-mutation-types'
+import _ from 'lodash'
+
 export default {
-  name: 'Thêm mới',
+  name: 'EmployeeAdd',
   props: {
     caption: {
       type: String,
       default: 'Thêm mới'
-    },
-    hover: {
-      type: Boolean,
-      default: true
-    },
-    striped: {
-      type: Boolean,
-      default: true
-    },
-    bordered: {
-      type: Boolean,
-      default: false
-    },
-    small: {
-      type: Boolean,
-      default: false
-    },
-    fixed: {
-      type: Boolean,
-      default: false
     }
   },
   data: () => {
     return {
+      rePassword: '',
       selected: null,
-      roles: [
-        { value: null, text: 'Chọn vai trò' },
-        { value: '1', text: 'Nhân viên kho' },
-        { value: '2', text: 'Nhân viên bán hàng' },
-        { value: '3', text: 'Quản lý kho' }
-      ],
-      items: employeesData.filter((user) => user.id < 42),
-      fields: [
-        {key: 'id', label: 'STT', sortable: true},
-        {key: 'vaitro', label: 'Vai trò', sortable: true},
-        {key: 'chinhanh', label: 'Chi nhánh', sortable: true}
-      ],
-      currentPage: 1,
-      perPage: 5,
-      totalRows: 0,
-      filter: null,
     }
   },
   computed: {
+    data() {
+      return _.cloneDeep(this.$store.state.user.user)
+    },
+    roles() {
+      return this.$store.state.user.roles
+    },
+    stores() {
+      return this.$store.state.user.stores
+    }
   },
   methods: {
-    getBadge (status) {
-      return status === 'Active' ? 'success'
-        : status === 'Inactive' ? 'secondary'
-          : status === 'Pending' ? 'warning'
-            : status === 'Banned' ? 'danger' : 'primary'
-    },
-    getRowCount (items) {
-      return items.length
-    },
-    userLink (id) {
-      return `users/${id.toString()}`
-    },
-    rowClicked (item) {
-      const userLink = this.userLink(item.id)
-      this.$router.push({path: userLink})
-    },
-    onFiltered (filteredItems) {
-      // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length
-      this.currentPage = 1
+    validateInput() {
+      return true
     },
     employeesAdd () {
       this.$router.push({name:'EmployeeAdd'})
+    },
+    updateField(field, value) {
+      this.$store.commit('user/' + USER_REQUEST_UPDATE_USER, {
+     	  [field]: value
+      });
+    },
+    doAddEmployee() {
+      const { data } = this
+      let action = ''
+      if (this.$route.params.storeId) {
+        action = 'user/editUser'
+      } else {
+        action = 'user/addUser'  
+      }
+
+      this.$store.dispatch(action, data)
+      .then(resp => {
+        this.$router.go(-1)
+      })
     }
-
-
+  },
+  mounted() {
+    if (this.$route.params.userId) {
+      this.$store.dispatch('user/getUserById', this.$route.params.userId)
+    }
+    this.$store.dispatch('user/getUserRoleAndStores')
   }
 }
 </script>

@@ -96,7 +96,7 @@ const router = new Router({
           ]
         },
         {
-          path: 'admin',
+          path: '',
           meta: { label: 'Con người'},
           redirect: '/admin/employees',
           component: {
@@ -107,15 +107,26 @@ const router = new Router({
               path: 'employees',
               name: 'Employees',
               component: Employees,
-              meta: { requiresAuth: true, adminRole: true }
+              meta: { requiresAuth: true, adminRole: true },
             },
             {
               path: 'create-employee',
-              name: 'Nhân viên',
+              name: 'EmployeeAdd',
               component: EmployeesAdd,
-              meta: { requiresAuth: true, adminRole: true }
+              meta: { requiresAuth: true, adminRole: true, label: 'Thêm nhân viên' }
             },
-            
+            {
+              path: 'edit/:userId',
+              name: 'EmployeeEdit',
+              component: Employees,
+              meta: { requiresAuth: true, adminRole: true, label: 'Chỉnh sửa nhân viên' },
+            },
+            {
+              path: 'delete/:userId',
+              name: 'EmployeeDelete',
+              redirect: '/admin/employees',
+              meta: { requiresAuth: true, adminRole: true },
+            },
             {
               path: 'customers',
               name: 'Customers',
@@ -259,7 +270,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    if (!store.getters.isAuthenticated && localStorage.getItem("access-token") === null) {
+    if (!store.getters.isAuthenticated && !localStorage.getItem("access-token")) {
       next({
         name: 'Login',
         query: { redirect: to.fullPath }
