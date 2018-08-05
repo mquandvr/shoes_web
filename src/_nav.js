@@ -24,7 +24,7 @@ export default {
     },
     {
       name: 'Khách hàng',
-      url: '/admin/customers',
+      url: '/customers',
       icon: 'cui-people'
     },
     {
@@ -43,7 +43,7 @@ export default {
     },
     {
       name: 'Nhà cung cấp',
-      url: '/theme/colors',
+      url: '/providers',
       icon: 'fa fa-industry'
     },
     {
@@ -56,17 +56,17 @@ export default {
       }
     },
     {
-<<<<<<< HEAD
       name: 'Danh sách sản phẩm',
-      url: '/theme/colors',
-=======
-      name: 'Hàng hóa',
       url: '/products',
->>>>>>> d352330819e9cb9bff1121d066159a693b65169a
       icon: 'fa fa-product-hunt'
     },
     {
       name: 'Quản lý kho',
+      url: '#',
+      icon: 'fa fa-product-hunt',
+    },
+    {
+      name: 'Loại sản phẩm',
       url: '#',
       icon: 'fa fa-product-hunt',
     },
@@ -168,34 +168,9 @@ export default {
       icon: 'fa fa-building'
     },
     {
-<<<<<<< HEAD
       name:'Khách hàng',
       url:'#', 
       icon: 'fa fa-building'
-=======
-      title: true,
-      name: 'Menu Mới',
-      class: '',
-      wrapper: {
-        element: '',
-        attributes: {}
-      }
-    },
-    {
-      name: 'Menu item 1',
-      url: '/page/hello',
-      icon: 'fa fa-google'
-    },
-    {
-      name: 'Menu item 2',
-      url: '/page/page2',
-      icon: 'fa fa-facebook'
-    },
-    {
-      name: 'Menu item 3',
-      url: '/page/page3',
-      icon: 'fa fa-linkedin'
->>>>>>> d352330819e9cb9bff1121d066159a693b65169a
     }
   ]
 }

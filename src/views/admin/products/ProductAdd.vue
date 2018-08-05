@@ -59,6 +59,9 @@
                         >
                 <b-form-select v-model="selected" :options="categoryTypes" class="w-50 mb-3" />
               </b-form-group>
+              <b-button class="fa fa-plus-square" @click="employeesAdd" variant="primary" style="margin-left:66%;margin-top:-11%">
+                THÊM MỚI LOẠI
+              </b-button>
               <b-form-group horizontal
                         id="description1"
                         label="Mô tả:"

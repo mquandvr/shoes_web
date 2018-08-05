@@ -77,6 +77,7 @@ export default {
         { value: null, text: 'Chọn danh mục' },
         { value: '1', text: 'Nhà may 1' },
         { value: '2', text: 'Nhà may 2' },
+        { value: '3', text: 'Nhà may 3' },
       ]
     }
   },

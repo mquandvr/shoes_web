@@ -9,7 +9,10 @@
       </b-input-group>
     </b-col>
     <b-col md="6" class="my-1" style="position: relative">
-      <b-button @click="employeesAdd" size="sm" class="mb-0 fa fa-plus-square" style="position: absolute; right: 15px; top: 5px;"> Thêm sản phẩm</b-button>
+      <!--<b-button @click="employeesAdd" size="sm" class="mb-0 fa fa-plus-square" style="position: absolute; right: 15px; top: 5px;"> Thêm sản phẩm</b-button>-->
+        <b-button class="fa fa-plus-square" @click="employeesAdd" variant="primary" style="margin-left:66%">
+          THÊM MỚI SẢN PHẨM
+          </b-button>
     </b-col>
     <b-col cols="12" xl="12">
       <transition name="slide">
@@ -18,20 +21,23 @@
           <template slot="id" slot-scope="data">
             <strong>{{data.item.id}}</strong>
           </template>
-          <template slot="email" slot-scope="data">
-            <strong>{{data.item.email}}</strong>
+          <template slot="ten_sp" slot-scope="data">
+            <strong>{{data.item.ten_sp}}</strong>
           </template>
-          <template slot="name" slot-scope="data">
-            <strong>{{data.item.name}}</strong>
+          <template slot="loai_sp" slot-scope="data">
+            <strong>{{data.item.loai_sp}}</strong>
           </template>
-          <template slot="phone" slot-scope="data">
-            <strong>{{data.item.phone}}</strong>
+          <template slot="gia_sp" slot-scope="data">
+            <strong>{{data.item.gia_sp}}</strong>
           </template>
           <template slot="registered" slot-scope="data">
             <strong>{{data.item.registered}}</strong>
           </template>
           <template slot="status" slot-scope="data">
             <b-badge :variant="getBadge(data.item.status)">{{data.item.status}}</b-badge>
+          </template>
+          <template slot="ton_kho" slot-scope="data">
+            <strong>{{data.item.ton_kho}}</strong>
           </template>
           <template slot="actions" slot-scope="row">
             <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1 fa fa-eye"> </b-button>
@@ -82,13 +88,13 @@ export default {
     return {
       items: productData.filter((user) => user.id < 42),
       fields: [
-        {key: 'id', label: 'STT', sortable: true},
-        {key: 'email', label: 'Email', sortable: true},
-        {key: 'name', label: 'Tên', sortable: true},
-        {key: 'phone', label: 'SĐT', sortable: true},
+        {key: 'id', label: 'Mã hàng', sortable: true},
+        {key: 'ten_sp', label: 'Tên sản phẩm', sortable: true},
+        {key: 'loai_sp', label: 'Loại sản phẩm', sortable: true},
+        {key: 'gia_sp', label: 'Giá sản phẩm', sortable: true},
         {key: 'registered', label: 'Ngày tạo', sortable: true},
         {key: 'status', label: 'Trạng thái', sortable: true},
-        { key: 'actions', label: 'Actions' }
+        {key: 'ton_kho', label: 'Tồn kho', sortable:true }
       ],
       currentPage: 1,
       perPage: 5,
@@ -111,10 +117,10 @@ export default {
     userLink (id) {
       return `users/${id.toString()}`
     },
-    rowClicked (item) {
-      const userLink = this.userLink(item.id)
-      this.$router.push({path: userLink})
-    },
+    //rowClicked (item) {
+    // const userLink = this.userLink(item.id)
+    //this.$router.push({path: userLink})
+    //},
     onFiltered (filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length
