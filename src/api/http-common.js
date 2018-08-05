@@ -1,10 +1,42 @@
 import axios from 'axios'
-//import cons from '@/api/http-common'
+import { HTTP_PREFIX_URL, HTTP_ACCESS_TOKEN } from '@/utils/constants'
+import qs from 'qs'
+import { updateQueryStringParameter } from '@/utils/common'
 
-export const HTTP = axios.create({
-  baseURL: 'https://www.yesno.wtf/api/',
+const http = axios.create({
+  baseURL: HTTP_PREFIX_URL,
   headers: {
-    Authorization: 'Bearer {token}'
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
+  auth: {
+    username: 'hendi-client',
+    password: 'hendi-secret'
   }
 })
 
+http.interceptors.response.use(function (response) {
+  // Do something with response data
+  if (response.status === 401 && response.config && !response.config.__isRetryRequest) {
+    // if you ever get an unauthorized, logout the user
+    this.$store.dispatch("doLogout")
+
+    return Promise.reject(response);
+  }
+  return response;
+}, function (error) {
+  // Do something with response error
+  return Promise.reject(error);
+});
+
+
+
+// Set the AUTH token for any request
+http.interceptors.request.use(function (config) {
+  if (localStorage.getItem(HTTP_ACCESS_TOKEN)) {
+    config.url = updateQueryStringParameter(config.url, HTTP_ACCESS_TOKEN, localStorage.getItem(HTTP_ACCESS_TOKEN))
+  }
+  return config
+});
+
+export default http

@@ -14,24 +14,39 @@
     <b-col cols="12" xl="12">
       <transition name="slide">
       <b-card :header="caption">
-        <b-table :hover="hover" :filter="filter" :striped="striped" :bordered="bordered" :small="small" :fixed="fixed" responsive="sm" :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="rowClicked" @filtered="onFiltered">
+        <b-table :hover="hover" :filter="filter" :striped="striped" :bordered="bordered" :small="small" :fixed="fixed" responsive="sm" :items="userList" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="rowClicked" @filtered="onFiltered">
           <template slot="id" slot-scope="data">
             <strong>{{data.item.id}}</strong>
+          </template>
+          <template slot="username" slot-scope="data">
+            <strong>{{data.item.fullname}}</strong>
           </template>
           <template slot="email" slot-scope="data">
             <strong>{{data.item.email}}</strong>
           </template>
-          <template slot="name" slot-scope="data">
-            <strong>{{data.item.name}}</strong>
+          <template slot="username" slot-scope="data">
+            <strong>{{data.item.username}}</strong>
           </template>
-          <template slot="phone" slot-scope="data">
-            <strong>{{data.item.phone}}</strong>
+          <template slot="mobilePhone" slot-scope="data">
+            <strong>{{data.item.mobilePhone}}</strong>
           </template>
-          <template slot="registered" slot-scope="data">
-            <strong>{{data.item.registered}}</strong>
+          <template slot="address" slot-scope="data">
+            <strong>{{data.item.address}}</strong>
+          </template>
+          <template slot="birthday" slot-scope="data">
+            <strong>{{data.item.birthday}}</strong>
+          </template>
+          <template slot="role" slot-scope="data">
+            <strong>{{data.item.role}}</strong>
+          </template>
+          <template slot="storeId" slot-scope="data">
+            <strong>{{data.item.storeId}}</strong>
+          </template>
+          <template slot="remark" slot-scope="data">
+            <strong>{{data.item.remark}}</strong>
           </template>
           <template slot="status" slot-scope="data">
-            <b-badge :variant="getBadge(data.item.status)">{{data.item.status}}</b-badge>
+            <b-badge :variant="getBadge(data.item.active)">{{data.item.active}}</b-badge>
           </template>
           <template slot="actions" slot-scope="row">
             <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1 fa fa-eye"> </b-button>
@@ -55,7 +70,7 @@ export default {
   props: {
     caption: {
       type: String,
-      default: 'Nhân viên'
+      default: 'Danh sách nhân viên'
     },
     hover: {
       type: Boolean,
@@ -80,30 +95,35 @@ export default {
   },
   data: () => {
     return {
-      items: employeesData.filter((user) => user.id < 42),
+      items: [],
       fields: [
         {key: 'id', label: 'STT', sortable: true},
+        {key: 'fullname', label: 'Tên', sortable: true},
         {key: 'email', label: 'Email', sortable: true},
-        {key: 'name', label: 'Tên', sortable: true},
-        {key: 'phone', label: 'SĐT', sortable: true},
-        {key: 'registered', label: 'Ngày tạo', sortable: true},
+        {key: 'username', label: 'Tên đăng nhập', sortable: true},
+        {key: 'address', label: 'Địa chỉ', sortable: true},
+        {key: 'mobilePhone', label: 'SĐT', sortable: true},
+        {key: 'birthday', label: 'Ngày sinh', sortable: true},
+        {key: 'role', label: 'Vai trò', sortable: true},
+        {key: 'storeId', label: 'Chi nhánh', sortable: true},
+        {key: 'remark', label: 'Ghi chú', sortable: true},
         {key: 'status', label: 'Trạng thái', sortable: true},
-        { key: 'actions', label: 'Actions' }
+        {key: 'actions', label: 'Actions'}
       ],
       currentPage: 1,
-      perPage: 5,
-      totalRows: 0,
+      perPage: 20,
+      totalRows: 10,
       filter: null,
     }
   },
   computed: {
-  },
+    userList() {
+      return this.$store.getters['user/getUserList']
+    }
+  },  
   methods: {
     getBadge (status) {
-      return status === 'Active' ? 'success'
-        : status === 'Inactive' ? 'secondary'
-          : status === 'Pending' ? 'warning'
-            : status === 'Banned' ? 'danger' : 'primary'
+      return status === true ? 'success' : 'danger'
     },
     getRowCount (items) {
       return items.length
@@ -121,9 +141,11 @@ export default {
       this.currentPage = 1
     },
     employeesAdd () {
-      this.$router.push({name:'EmployeesAdd'})
+      this.$router.push({path: 'create-employee'})
     }
-
+  },
+  mounted () {
+    this.$store.dispatch('user/getUsers');
   }
 }
 </script>

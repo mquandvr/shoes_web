@@ -17,7 +17,8 @@
                       <b-form-input id="name"
                                 type="text"
                                 required
-                                placeholder="Cửa hàng A">
+                                placeholder="Cửa hàng A"
+                                v-model="data.storeName">
                       </b-form-input>
                     </b-form-group>
                     <b-form-group id="address1"
@@ -26,7 +27,8 @@
                       <b-form-input id="address"
                                 type="text"
                                 required
-                                placeholder="">
+                                placeholder=""
+                                v-model="data.address">
                       </b-form-input>
                     </b-form-group>
                   </b-col>                
@@ -39,7 +41,7 @@
               <b-col cols="auto" class="mr-auto"></b-col>
               <b-col cols="auto">
                 <b-button variant="secondary" style="margin-right: 20px">Hủy bỏ</b-button>
-                <b-button variant="success" >Thêm</b-button>
+                <b-button variant="success" @click="addStore">Thêm</b-button>
               </b-col>
             </b-row>
           </b-container>
@@ -52,7 +54,7 @@
 
 <script>
 export default {
-  name: 'Store add',
+  name: 'Storeadd',
   props: {
     caption: {
       type: String,
@@ -81,11 +83,40 @@ export default {
   },
   data: () => {
     return {
+      data: {
+        storeName: '',
+        address: '',
+        id: '',
+        deleted: false
+      }
     }
   },
   computed: {
   },
   methods: {
+    addStore() {
+      const { data } = this
+      let action = ''
+      if (this.$route.params.storeId) {
+        action = 'stores/editStore'
+      } else {
+        action = 'stores/addStore'  
+      }
+        this.$store.dispatch(action, data)
+        .then(resp => {
+          this.$router.go(-1)
+        })
+    }
+  },
+  mounted() {
+    if (this.$route.params.storeId) {
+      let obj = this.$store.getters['stores/getStoreById'](this.$route.params.storeId)
+      // this.data = this.$store.getters.stores.getStoreById(this.$route.params.storeId)
+      this.data.storeName = obj.name
+      this.data.address = obj.address
+      this.data.id = obj.id
+      this.data.deleted = obj.deleted
+    }
   }
 }
 </script>

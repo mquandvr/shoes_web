@@ -2,7 +2,7 @@ export default {
   items: [
     {
       name: 'Trang chủ',
-      url: '/dashboard',
+      url: '/admin/dashboard',
       icon: 'icon-home',
       badge: {
         variant: 'primary'
@@ -24,7 +24,7 @@ export default {
     },
     {
       name: 'Khách hàng',
-      url: '/customers',
+      url: '/admin/customers',
       icon: 'cui-people'
     },
     {
@@ -38,12 +38,12 @@ export default {
     },
     {
       name: 'Cửa hàng',
-      url: '/stores',
+      url: '/admin/stores',
       icon: 'fa fa-building'
     },
     {
       name: 'Nhà cung cấp',
-      url: '/providers',
+      url: '/admin/providers',
       icon: 'fa fa-industry'
     },
     {
@@ -57,54 +57,54 @@ export default {
     },
     {
       name: 'Hàng hóa',
-      url: '/products',
+      url: '/admin/products',
       icon: 'fa fa-product-hunt'
     },
     {
       name: 'Danh mục',
-      url: '/merchandise/categories',
+      url: '/admin/merchandise/categories',
       icon: 'fa fa-product-hunt'
     },
     {
       name: 'Công ty',
-      url: '/buttons',
+      url: '/admin/buttons',
       icon: 'icon-cursor',
       children: [
         {
           name: 'Nhập hàng',
-          url: '/theme/colors',
+          url: '/admin/theme/colors',
           icon: 'fa fa-building'
         },
         {
           name: 'Xuất hàng',
-          url: '/theme/colors',
+          url: '/admin/theme/colors',
           icon: 'cui-note'
         },
         {
           name: 'Tồn kho',
-          url: '/theme/colors',
+          url: '/admin/theme/colors',
           icon: 'cui-note'
         }
       ]
     },
     {
       name: 'Cửa hàng',
-      url: '/buttons',
+      url: '/admin/buttons',
       icon: 'icon-cursor',
       children: [
         {
           name: 'Nhập hàng',
-          url: '/theme/colors',
+          url: '/admin/theme/colors',
           icon: 'fa fa-building'
         },
         {
           name: 'Xuất hàng',
-          url: '/theme/colors',
+          url: '/admin/theme/colors',
           icon: 'cui-note'
         },
         {
           name: 'Tồn kho',
-          url: '/theme/colors',
+          url: '/admin/theme/colors',
           icon: 'cui-note'
         }
       ]
@@ -120,22 +120,22 @@ export default {
     },
     {
       name: 'Hóa đơn',
-      url: '/theme/colors',
+      url: '/admin/theme/colors',
       icon: 'cui-note'
     },
     {
       name: 'Đặt hàng',
-      url: '/theme/colors',
+      url: '/admin/theme/colors',
       icon: 'cui-note'
     },
     {
       name: 'Giao hàng',
-      url: '/theme/colors',
+      url: '/admin/theme/colors',
       icon: 'cui-note'
     },
     {
       name: 'Trả hàng',
-      url: '/theme/colors',
+      url: '/admin/theme/colors',
       icon: 'cui-note'
     },
     {
@@ -149,13 +149,37 @@ export default {
     },
     {
       name: 'Báo Cáo',
-      url: '/theme/colors',
+      url: '/admin/theme/colors',
       icon: 'fa fa-building'
     },
     {
       name: 'Khuyến mãi',
-      url: '/theme/colors',
+      url: '/admin/theme/colors',
       icon: 'fa fa-building'
+    },
+    {
+      title: true,
+      name: 'Menu Mới',
+      class: '',
+      wrapper: {
+        element: '',
+        attributes: {}
+      }
+    },
+    {
+      name: 'Menu item 1',
+      url: '/admin/page/hello',
+      icon: 'fa fa-google'
+    },
+    {
+      name: 'Menu item 2',
+      url: '/admin/page/page2',
+      icon: 'fa fa-facebook'
+    },
+    {
+      name: 'Menu item 3',
+      url: '/admin/page/page3',
+      icon: 'fa fa-linkedin'
     }
   ]
 }
