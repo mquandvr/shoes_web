@@ -121,8 +121,18 @@ export default {
       this.currentPage = 1
     },
     employeesAdd () {
-      this.$router.push({name:'EmployeesAdd'})
+      this.$router.push({path: 'create-employee'})
     }
+
+  // },
+  
+  // mounted () {
+  //   console.log('run get list user')
+  //   this.$store.dispatch('user/getUserList').
+    
+  //   then((res) => {
+  //     console.log(res)
+  //   })
 
   }
 }

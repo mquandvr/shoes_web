@@ -2,9 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import {store} from '@/store/index'
 
-//Test
-const Test =() => import('@/views/test/Test')
-
 // Containers
 const DefaultContainer = () => import('@/containers/admin/DefaultContainer')
 
@@ -40,11 +37,15 @@ const ProviderAdd = () => import('@/views/admin/providers/ProviderAdd')
 
 //Customers
 const Customers =() => import('@/views/admin/customer/Customers')
-const Customer =() => import('@/views/admin/customer/Customer')
+const CustomerAdd =() => import('@/views/admin/customer/CustomerAdd')
 
 // Products
 const Products = () => import('@/views/admin/products/Products')
 const ProductAdd = () => import('@/views/admin/products/ProductAdd')
+
+// Customer
+const Home = () => import('@/views/customer/home')
+
 
 Vue.use(Router)
 
@@ -56,16 +57,22 @@ const router = new Router({
     
     {
       path: '/',
-      redirect: '/dashboard',
       name: 'Home',
+      component: Home,
+      meta: { customerRole: true },
+    },
+    {
+      path: '/admin',
+      redirect: { name: 'Dashboard' },
+      name: 'Admin',
       component: DefaultContainer,
-      meta: { requiresAuth: true },
+
       children: [
         {
           path: 'dashboard',
           name: 'Dashboard',
           component: Dashboard,
-          meta: { requiresAuth: true }
+          meta: { requiresAuth: true, adminRole: true }
         },
         {
           path: 'merchandise',
@@ -78,39 +85,41 @@ const router = new Router({
               path: 'categories',
               name: 'Danh mục',
               component: Categories,
-              meta: { requiresAuth: true }
+              meta: { requiresAuth: true, adminRole: true }
             },
             {
               path: 'typography',
               name: 'Typography',
               component: Typography,
-              meta: { requiresAuth: true }
+              meta: { requiresAuth: true, adminRole: true }
             }
           ]
         },
         {
           path: 'admin',
-          meta: { label: 'People'},
+          meta: { label: 'Con người'},
+          redirect: '/admin/employees',
           component: {
             render (c) { return c('router-view') }
           },
           children: [
             {
               path: 'employees',
+              name: 'Employees',
               component: Employees,
-              meta: { requiresAuth: true }
+              meta: { requiresAuth: true, adminRole: true }
             },
             {
-              path: 'create',
-              name: 'EmployeesAdd',
+              path: 'create-employee',
+              name: 'Nhân viên',
               component: EmployeesAdd,
-              meta: { requiresAuth: true }
+              meta: { requiresAuth: true, adminRole: true }
             },
             
             {
               path: 'customers',
               name: 'Customers',
-              meta: { requiresAuth: true },
+              meta: { requiresAuth: true, adminRole: true },
               component: {
                 render (c) { return c('router-view') }
               },
@@ -118,95 +127,106 @@ const router = new Router({
                 {
                   path: '',
                   component: Customers,
-                  meta: { requiresAuth: true }
+                  meta: { requiresAuth: true, adminRole: true }
+
                 },
                 {
-                  path: ':id',
-                  meta: { label: 'Customer Details', requiresAuth: true},
-                  name: 'Customer',
-                  component: Customer,
+                  path: 'create',
+                  name: 'Thêm khách hàng',
+                  component: CustomerAdd,
+                  meta: { requiresAuth: true, adminRole: true }
+
                 },
               ]
             }
           ]
         },
+        // {
+        //   path: '',
+        //   meta: { label: 'Users'},
+        //   component: {
+        //     render (c) { return c('router-view') }
+        //   },
+        //   children: [
+        //     {
+        //       path: 'users',
+        //       component: Users,
+        //       meta: { requiresAuth: true }
+        //     },
+        //     {
+        //       path: ':id',
+        //       meta: { label: 'User Details', requiresAuth: true},
+        //       name: 'User',
+        //       component: User,
+        //     },
+        //   ]
+        // },
         {
-          path: 'users',
-          meta: { label: 'Users'},
-          component: {
-            render (c) { return c('router-view') }
-          },
-          children: [
-            {
-              path: '',
-              component: Users,
-              meta: { requiresAuth: true }
-            },
-            {
-              path: ':id',
-              meta: { label: 'User Details', requiresAuth: true},
-              name: 'User',
-              component: User,
-            },
-          ]
-        },
-        {
-          path: 'stores',
+          path: '',
           meta: { label: 'Store'},
           component: {
             render (c) { return c('router-view') }
           },
           children: [
             {
-              path: '',
+              path: 'stores',
+              name: 'Stores',
               component: Stores,
-              meta: { requiresAuth: true }
+              meta: { requiresAuth: true, adminRole: true }
             },
             {
               path: 'create',
               name: 'StoreAdd',
               component: StoreAdd,
-              meta: { requiresAuth: true }
+              meta: { requiresAuth: true, adminRole: true }
+
             }
           ]
         },
         {
-          path: 'providers',
-          name: 'Providers',
+          path: '',
           component: {
             render (c) { return c('router-view') }
           },
           children: [
             {
-              path: '',
+              path: 'providers',
+              name: 'Providers',
               component: Providers,
-              meta: { requiresAuth: true }
+              meta: { requiresAuth: true, adminRole: true }
+
             },
             {
               path: 'create',
               name: 'ProviderAdd',
               component: ProviderAdd,
-              meta: { requiresAuth: true }
+              meta: { requiresAuth: true, adminRole: true }
+
             }
           ]
         },
         {
-          path: 'products',
-          name: 'Products',
+          path: '',
+          redirect: {
+            name : 'Products'
+          },
           component: {
             render (c) { return c('router-view') }
           },
           children: [
             {
-              path: '',
+              path: 'products',
+              name: 'Products',
               component: Products,
-              meta: { requiresAuth: true }
+              meta: { requiresAuth: true, adminRole: true }
+
             },
             {
               path: 'create',
               name: 'ProductAdd',
               component: ProductAdd,
-              meta: { requiresAuth: true }
+              meta: { requiresAuth: true, adminRole: true }
+
             }
           ]
         }
@@ -239,13 +259,25 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    if (!store.getters.isAuthenticated) {
+    if (!store.getters.isAuthenticated && localStorage.getItem("access-token") === null) {
       next({
         name: 'Login',
         query: { redirect: to.fullPath }
       })
-    } else {
+    } else if(to.matched.some(record => record.meta.requiresAuth)) {
+      const authUser = store.getters['user/getUserRole']
+      if (authUser === 'ADMIN') {
+        next()
+      } else {
+        next({ name: 'Home' })
+      }
+    }
+  } else if (to.matched.some(record => record.meta.customerRole)) {
+    const authUser = store.getters['user/getUserRole']
+    if (authUser === 'CUSTOMER') {
       next()
+    } else {
+      next({ name: 'Admin' })
     }
   } else {
     next() // make sure to always call next()!
