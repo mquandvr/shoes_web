@@ -16,10 +16,6 @@ const Page500 = () => import('@/views/admin/pages/Page500')
 const Login = () => import('@/views/admin/pages/Login')
 const Register = () => import('@/views/admin/pages/Register')
 
-// Users
-const Users = () => import('@/views/admin/users/Users')
-const User = () => import('@/views/admin/users/User')
-
 // Employees
 const Employees = () => import('@/views/admin/employees/Employees')
 const EmployeesAdd = () => import('@/views/admin/employees/EmployeesAdd')
