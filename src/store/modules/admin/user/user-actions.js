@@ -1,4 +1,10 @@
-import { USER_REQUEST_GET_ROLE_LIST, USER_REQUEST_GET_LIST, USER_REQUEST_DELETE_BY_ID, STORE_REQUEST_GET_LIST } from './user-mutation-types'
+import { 
+    USER_REQUEST_GET_ROLE_LIST, 
+    USER_REQUEST_GET_LIST, 
+    STORE_REQUEST_GET_LIST,
+    USER_REQUEST_GET_USER_BY_ID,
+    USER_MODE_SCREEN,
+} from './user-mutation-types'
 import http from '@/api/http-common'
 
 // actions
@@ -14,7 +20,6 @@ export const getUserRoleAndStores = ({commit}) => {
             // do something with both responses
             commit(USER_REQUEST_GET_ROLE_LIST, res[0].data)
             commit(STORE_REQUEST_GET_LIST, res[1].data)
-
             resolve(res)
         }))
         .catch(err => {
@@ -41,7 +46,7 @@ export const getUserById = ({commit}, id) => {
     return new Promise((resolve, reject) => {
         http.get('api/users/user/' + id)
         .then(resp => {
-            commit(USER_REQUEST_GET_LIST, resp.data)
+            commit(USER_REQUEST_GET_USER_BY_ID, resp.data)
             resolve(resp)
         })
         .catch(err => {
@@ -65,6 +70,20 @@ export const addUser = ({commit}, data) => {
     })
 }
 
+export const editUser = ({commit}, data) => {
+    return new Promise((resolve, reject) => {
+
+        const params = JSON.stringify(data)
+
+        http.put('api/users/user', params)
+        .then(resp => {
+            console.log('edit user success'+ resp.data)
+        })
+        .catch(err => {
+            reject(err)
+        })
+    })
+}
 
 // delete user by id
 export const deleteUserById = ({commit}, data) => {
@@ -72,7 +91,8 @@ export const deleteUserById = ({commit}, data) => {
     return new Promise((resolve, reject) => {
         http.get('api/users/user/delete/'+ data.id)
         .then(resp => {
-            commit(USER_REQUEST_DELETE_BY_ID)
+            // commit(USER_REQUEST_DELETE_BY_ID)
+            console.log('delete success')
             resolve(resp)
         })
         .catch(err => {
@@ -81,10 +101,18 @@ export const deleteUserById = ({commit}, data) => {
     })
 }
 
+export const doChangeModeScreen = ({commit}, payload) => {
+
+    localStorage.setItem('user-mode', payload.modeScreen)
+    commit(USER_MODE_SCREEN, payload.modeScreen)
+}
+
 export default {
     getUserRoleAndStores,
     getUsers,
     getUserById,
     addUser,
+    editUser,
     deleteUserById,
+    doChangeModeScreen,
 }

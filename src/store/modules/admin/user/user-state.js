@@ -5,18 +5,18 @@ export default {
     users: [],
     user: {
         fullName: '',
-        username: '',
-        password: '',
         email: '',
         birthday: '',
         address: '',
-        phone: '',
         mobilePhone: '',
+        username: '',
+        password: '',
+        remarks: '',
         role: '',
         storeId: '',
         active: true
     },
     roles: {},
     stores: {},
-    modeScreen: '',
+    modeScreen: localStorage.getItem('user-mode') || '',
 }

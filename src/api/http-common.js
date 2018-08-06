@@ -17,15 +17,14 @@ const http = axios.create({
 
 http.interceptors.response.use(function (response) {
   // Do something with response data
-  if (response.status === 401 && response.config && !response.config.__isRetryRequest) {
-    // if you ever get an unauthorized, logout the user
-    this.$store.dispatch("doLogout")
-
-    return Promise.reject(response);
-  }
   return response;
 }, function (error) {
   // Do something with response error
+  if (error.status === 401 && error.config && !error.config.__isRetryRequest) {
+    // if you ever get an unauthorized, logout the user
+    this.$store.dispatch("doLogout")
+
+  }
   return Promise.reject(error);
 });
 

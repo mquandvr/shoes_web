@@ -129,7 +129,6 @@
 </template>
 
 <script>
-import employeesData from '../employees/EmployeesData'
 import Datepicker from 'vuejs-datepicker'
 
 export default {

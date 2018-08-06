@@ -107,22 +107,31 @@ const router = new Router({
               path: 'employees',
               name: 'Employees',
               component: Employees,
-              meta: { requiresAuth: true, adminRole: true },
+              meta: { requiresAuth: true, adminRole: true }
             },
             {
-              path: 'create-employee',
+              path: 'employees/create',
               name: 'EmployeeAdd',
               component: EmployeesAdd,
+              props: true,
               meta: { requiresAuth: true, adminRole: true, label: 'Thêm nhân viên' }
             },
             {
-              path: 'edit/:userId',
-              name: 'EmployeeEdit',
-              component: Employees,
-              meta: { requiresAuth: true, adminRole: true, label: 'Chỉnh sửa nhân viên' },
+              path: 'employees/show/:userId',
+              name: 'EmployeeView',
+              component: EmployeesAdd,
+              props: true,
+              meta: { requiresAuth: true, adminRole: true, label: 'Xem nhân viên' }
             },
             {
-              path: 'delete/:userId',
+              path: 'employees/edit/:userId',
+              name: 'EmployeeEdit',
+              component: EmployeesAdd,
+              props: true,
+              meta: { requiresAuth: true, adminRole: true, label: 'Chỉnh sửa nhân viên' }
+            },
+            {
+              path: 'employees/delete/:userId',
               name: 'EmployeeDelete',
               redirect: '/admin/employees',
               meta: { requiresAuth: true, adminRole: true },

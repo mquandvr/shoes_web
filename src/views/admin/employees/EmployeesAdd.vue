@@ -22,6 +22,7 @@
                               required
                               placeholder="Nguyễn văn A"
                               v-model="data.fullName"
+                              :readonly="isReadOnly"
                               ></b-form-input>
                 <b-form-invalid-feedback id="inputLiveFeedback">
                   Enter at least 3 letters
@@ -38,6 +39,7 @@
                               required
                               placeholder=""
                               v-model="data.mobilePhone"
+                              :readonly="isReadOnly"
                               >
                 </b-form-input>
               </b-form-group>
@@ -52,6 +54,7 @@
                               required
                               placeholder=""
                               v-model="data.address"
+                              :readonly="isReadOnly"
                               >
                 </b-form-input>
               </b-form-group>                  
@@ -62,8 +65,7 @@
                             label-class="text-sm-right"
                             >
                   <!-- <datepicker placeholder="Chọn ngày sinh" 
-                              :value="data.birthay"
-                              @keyup.native="updateField('birthay', $event.target.value)"
+                              v-model="data.birthday"
                               ></datepicker> -->
               </b-form-group>
               <b-form-group horizontal
@@ -77,6 +79,7 @@
                               required
                               placeholder=""
                               v-model="data.email"
+                              :readonly="isReadOnly"
                               >
                 </b-form-input>
               </b-form-group>
@@ -91,6 +94,7 @@
                               required
                               placeholder=""
                               v-model="data.username"
+                              :readonly="isReadOnly"
                               >
                 </b-form-input>
               </b-form-group>
@@ -105,6 +109,7 @@
                           required
                           placeholder=""
                           v-model="data.password"
+                          :readonly="isReadOnly"
                           >
                 </b-form-input>
               </b-form-group>
@@ -119,6 +124,7 @@
                           required
                           placeholder=""
                           v-model="rePassword"
+                          :readonly="isReadOnly"
                           >
                 </b-form-input>
               </b-form-group>
@@ -132,7 +138,8 @@
                                   placeholder="Enter something"
                                   :rows="3"
                                   :max-rows="6"
-                                  v-model="data.remark"
+                                  v-model="data.remarks"
+                                  :readonly="isReadOnly"
                                   >
                 </b-form-textarea>  
               </b-form-group>  
@@ -154,7 +161,9 @@
                 <b-form-select 
                               v-model="data.role"
                               :options="roles"
-                              class="mb-2 mr-sm-2 mb-sm-0"  />
+                              class="mb-2 mr-sm-2 mb-sm-0"
+                              :disabled="isReadOnly"
+                              />
               </b-form-group> 
               <b-form-group horizontal
                             id="storeId"
@@ -164,7 +173,9 @@
                 <b-form-select 
                               v-model="data.storeId"
                               :options="stores" 
-                              class="mb-2 mr-sm-2 mb-sm-0"  />
+                              class="mb-2 mr-sm-2 mb-sm-0"
+                              :disabled="isReadOnly"
+                              />
               </b-form-group>  
           </b-form-group>
 
@@ -173,8 +184,8 @@
             <b-row>
               <b-col cols="auto" class="mr-auto"></b-col>
               <b-col cols="auto">
-                <b-button variant="secondary" style="margin-right: 20px">Hủy bỏ</b-button>
-                <b-button variant="success" @click="doAddEmployee" >Thêm</b-button>
+                <b-button variant="secondary" style="margin-right: 20px" @click="doBack">Hủy bỏ</b-button>
+                <b-button variant="success" @click="doAddEmployee" v-show="!isReadOnly">Thêm</b-button>
               </b-col>
             </b-row>
           </b-container>
@@ -186,9 +197,9 @@
 </template>
 
 <script>
-import employeesData from './EmployeesData'
 import { USER_REQUEST_UPDATE_USER } from '@/store/modules/admin/user/user-mutation-types'
 import _ from 'lodash'
+import { mapState, mapGetters  } from 'vuex'
 
 export default {
   name: 'EmployeeAdd',
@@ -205,22 +216,21 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      modeScreen: 'user/getModeScreen',
+      roles: 'user/getRoleList',
+      stores: 'user/getStoreList',
+    }),
     data() {
-      return _.cloneDeep(this.$store.state.user.user)
+      return _.cloneDeep(this.$store.getters['user/getUserById'])
     },
-    roles() {
-      return this.$store.state.user.roles
-    },
-    stores() {
-      return this.$store.state.user.stores
+    isReadOnly() {
+      return this.modeScreen === '0' ? true : false
     }
   },
   methods: {
     validateInput() {
       return true
-    },
-    employeesAdd () {
-      this.$router.push({name:'EmployeeAdd'})
     },
     updateField(field, value) {
       this.$store.commit('user/' + USER_REQUEST_UPDATE_USER, {
@@ -230,21 +240,28 @@ export default {
     doAddEmployee() {
       const { data } = this
       let action = ''
-      if (this.$route.params.storeId) {
+      if (this.modeScreen === '2') {
         action = 'user/editUser'
-      } else {
+      } else if (this.modeScreen === '1') {
         action = 'user/addUser'  
       }
 
       this.$store.dispatch(action, data)
-      .then(resp => {
-        this.$router.go(-1)
-      })
+      .then(this.$router.go(-1))
+    },
+    doBack() {
+      this.$router.go(-1)
     }
   },
   mounted() {
-    if (this.$route.params.userId) {
-      this.$store.dispatch('user/getUserById', this.$route.params.userId)
+      if (this.modeScreen === '2' || this.modeScreen === '0') {
+        if (this.modeScreen === '2') {
+          if (this.$route.params.userId) {
+            this.$store.dispatch('user/getUserById', this.$route.params.userId)
+          } else {
+            this.$router.go(-1)
+          }
+        }
     }
     this.$store.dispatch('user/getUserRoleAndStores')
   }

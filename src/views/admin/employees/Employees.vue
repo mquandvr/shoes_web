@@ -9,12 +9,12 @@
       </b-input-group>
     </b-col>
     <b-col md="6" class="my-1" style="position: relative">
-      <b-button @click="employeesAdd" size="sm" class="mb-0 fa fa-plus-square" style="position: absolute; right: 15px; top: 5px;"> Thêm nhân viên</b-button>
+      <b-button @click="addEmployee" size="sm" class="mb-0 fa fa-plus-square" style="position: absolute; right: 15px; top: 5px;"> Thêm nhân viên</b-button>
     </b-col>
     <b-col cols="12" xl="12">
       <transition name="slide">
       <b-card :header="caption">
-        <b-table :hover="hover" :filter="filter" :striped="striped" :bordered="bordered" :small="small" :fixed="fixed" responsive="sm" :items="userList" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="rowClicked" @filtered="onFiltered">
+        <b-table :hover="hover" :filter="filter" :striped="striped" :bordered="bordered" :small="small" :fixed="fixed" responsive :items="userList" :fields="fields" :current-page="currentPage" :per-page="perPage" @filtered="onFiltered">
           <template slot="id" slot-scope="data">
             <strong>{{data.item.id}}</strong>
           </template>
@@ -49,9 +49,9 @@
             <b-badge :variant="getBadge(data.item.active)">{{data.item.active}}</b-badge>
           </template>
           <template slot="actions" slot-scope="row">
-            <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1 fa fa-eye"> </b-button>
-            <b-button size="sm" @click.stop="row.toggleDetails" class="mr-1 fa fa-pencil-square-o"> </b-button>
-            <b-button size="sm" @click.stop="row.toggleDetails" class="mr-1 fa fa-trash-o"></b-button>
+            <b-button size="sm" class="mr-1 fa fa-eye" @click.stop="viewById(row.item.id)"> </b-button>
+            <b-button size="sm" class="mr-1 fa fa-pencil-square-o" @click.stop="editById(row.item.id)"> </b-button>
+            <b-button size="sm" class="mr-1 fa fa-trash-o" @click.stop="deleteById(row.item.id)"></b-button>
           </template>
         </b-table>
         <nav>
@@ -64,7 +64,6 @@
 </template>
 
 <script>
-import employeesData from './EmployeesData'
 export default {
   name: 'Employees',
   props: {
@@ -108,7 +107,7 @@ export default {
         {key: 'storeId', label: 'Chi nhánh', sortable: true},
         {key: 'remark', label: 'Ghi chú', sortable: true},
         {key: 'status', label: 'Trạng thái', sortable: true},
-        {key: 'actions', label: 'Actions'}
+        {key: 'actions', label: 'Hành động'}
       ],
       currentPage: 1,
       perPage: 20,
@@ -128,21 +127,28 @@ export default {
     getRowCount (items) {
       return items.length
     },
-    userLink (id) {
-      return `users/${id.toString()}`
-    },
-    rowClicked (item) {
-      const userLink = this.userLink(item.id)
-      this.$router.push({path: userLink})
-    },
     onFiltered (filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length
       this.currentPage = 1
     },
-    employeesAdd () {
-      this.$router.push({path: 'create-employee'})
+    addEmployee () {
+      this.$store.dispatch('user/doChangeModeScreen', {modeScreen: '1'})
+      .then(this.$router.push({name: 'EmployeeAdd'}))
+      
+    },
+    viewById() {
+      this.$store.dispatch('user/doChangeModeScreen', {modeScreen: '0'})
+      .then(this.$router.push({name: 'EmployeeView'}))
+    },
+    editById(id) {
+      this.$store.dispatch('user/doChangeModeScreen', {modeScreen: '2'})
+      .then(this.$router.push({name: 'EmployeeEdit', params: { userId: id }}))
+    },
+    deleteById(userId) {
+      this.$store.dispatch('user/deleteUserById', {id: userId})
     }
+
   },
   mounted () {
     this.$store.dispatch('user/getUsers');
