@@ -12,7 +12,7 @@ export const getUserList = ({commit}) => {
         }
         axios({
             method: 'get',
-            url: 'http://103.221.222.158:8080/api/users/user',
+            url: 'http://dev.maxb.vn/api/users/user',
             params,
             config
           })
@@ -44,11 +44,11 @@ export const addUser = ({commit}, user) => {
         "username": user.username
     }
 
-    const accessToken = "b5e383b8-5b22-4cc0-9198-214de4ff3363"
+    const accessToken = "f5571f7f-bfd3-4562-a056-a3fcc548bd44"
     const config = {}
     axios({
         method: 'post',
-        url: 'http://103.221.222.158:8080/api/users/user?' + accessToken,
+        url: 'http://dev.maxb.vn/api/users/user?' + accessToken,
         data,
         config
       })

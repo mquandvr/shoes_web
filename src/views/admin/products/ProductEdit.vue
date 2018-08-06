@@ -101,12 +101,12 @@
                         label-for="initPrice"
                         >
                 <b-form-input
-                        id="initPrice"
-                        type="text"
-                        required
-                        placeholder=""
-                        class="w-50"
-                        >
+                          id="initPrice"
+                          type="text"
+                          required
+                          placeholder=""
+                          class="w-50"
+                          >
                 </b-form-input>
               </b-form-group> 
               <b-form-group horizontal

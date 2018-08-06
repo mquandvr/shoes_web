@@ -9,7 +9,7 @@
       </b-input-group>
     </b-col>
     <b-col md="6" class="my-1" style="position: relative">
-      <b-button @click="employeesAdd" size="sm" class="mb-0 fa fa-plus-square" style="position: absolute; right: 15px; top: 5px;"> Thêm nhà cung cấp</b-button>
+      <b-button @click="employeesAdd" size="sm" class="mb-0 fa fa-plus-square" style="position: absolute;right: 15px;background-color: #76bae5;color: #fff;padding: 10px;bottom: 0px;border-radius: 5px;font-size: 15px;"> Thêm nhà cung cấp</b-button>
     </b-col>
     <b-col cols="12" xl="12">
       <transition name="slide">
