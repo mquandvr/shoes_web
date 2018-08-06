@@ -14,7 +14,7 @@
     <b-col cols="12" xl="12">
       <transition name="slide">
       <b-card :header="caption">
-        <b-table :hover="hover" :filter="filter" :small="small" responsive :fixed="fixed"  :striped="striped" :bordered="bordered" stacked="md" :items="userList" itemid="" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="rowClicked" @filtered="onFiltered">
+        <b-table :hover="hover" :filter="filter" :small="small" responsive :fixed="fixed"  :striped="striped" :bordered="bordered" stacked="md" :items="userList" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="rowClicked" @filtered="onFiltered">
           <template slot="fullname" slot-scope="data">
             {{data.item.fullname}}
           </template>
@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import employeesData from './EmployeesData'
 export default {
   name: 'Employees',
   props: {
@@ -115,14 +114,12 @@ export default {
       this.totalRows = filteredItems.length
       this.currentPage = 1
     },
-
     employeesAdd () {
       this.$router.push({path: 'create-employee'})
-    },
-
-    mounted () {
-    this.$store.dispatch('user/getUsers');
     }
+  },
+  mounted () {
+    this.$store.dispatch('user/getUsers');
   }
 }
 </script>
