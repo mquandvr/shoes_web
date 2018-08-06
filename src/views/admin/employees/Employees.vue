@@ -14,43 +14,24 @@
     <b-col cols="12" xl="12">
       <transition name="slide">
       <b-card :header="caption">
-        <b-table :hover="hover" :filter="filter" :striped="striped" :bordered="bordered" :small="small" :fixed="fixed" responsive="sm" :items="userList" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="rowClicked" @filtered="onFiltered">
-          <template slot="id" slot-scope="data">
-            <strong>{{data.item.id}}</strong>
+        <b-table :hover="hover" :filter="filter" :small="small" responsive :fixed="fixed"  :striped="striped" :bordered="bordered" stacked="md" :items="userList" itemid="" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="rowClicked" @filtered="onFiltered">
+          <template slot="fullname" slot-scope="data">
+            {{data.item.fullname}}
           </template>
           <template slot="username" slot-scope="data">
-            <strong>{{data.item.fullname}}</strong>
+            {{data.item.username}}
           </template>
           <template slot="email" slot-scope="data">
-            <strong>{{data.item.email}}</strong>
-          </template>
-          <template slot="username" slot-scope="data">
-            <strong>{{data.item.username}}</strong>
-          </template>
-          <template slot="mobilePhone" slot-scope="data">
-            <strong>{{data.item.mobilePhone}}</strong>
-          </template>
-          <template slot="address" slot-scope="data">
-            <strong>{{data.item.address}}</strong>
-          </template>
-          <template slot="birthday" slot-scope="data">
-            <strong>{{data.item.birthday}}</strong>
+            {{data.item.email}}
           </template>
           <template slot="role" slot-scope="data">
-            <strong>{{data.item.role}}</strong>
-          </template>
-          <template slot="storeId" slot-scope="data">
-            <strong>{{data.item.storeId}}</strong>
-          </template>
-          <template slot="remark" slot-scope="data">
-            <strong>{{data.item.remark}}</strong>
+            {{data.item.role}}
           </template>
           <template slot="status" slot-scope="data">
             <b-badge :variant="getBadge(data.item.active)">{{data.item.active}}</b-badge>
           </template>
-          <template slot="actions" slot-scope="row">
-            <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1 fa fa-eye"> </b-button>
-            <b-button size="sm" @click.stop="row.toggleDetails" class="mr-1 fa fa-pencil-square-o"> </b-button>
+          <template slot="actions" slot-scope="row" >
+            <b-button size="sm" @click.stop="row.toggleDetails" class="mr-1 fa fa-pencil-square-o"></b-button>
             <b-button size="sm" @click.stop="row.toggleDetails" class="mr-1 fa fa-trash-o"></b-button>
           </template>
         </b-table>
@@ -82,7 +63,7 @@ export default {
     },
     bordered: {
       type: Boolean,
-      default: false
+      default: true
     },
     small: {
       type: Boolean,
@@ -90,25 +71,19 @@ export default {
     },
     fixed: {
       type: Boolean,
-      default: false
+      default: true
     }
   },
   data: () => {
     return {
       items: [],
       fields: [
-        {key: 'id', label: 'STT', sortable: true},
         {key: 'fullname', label: 'Tên', sortable: true},
         {key: 'email', label: 'Email', sortable: true},
         {key: 'username', label: 'Tên đăng nhập', sortable: true},
-        {key: 'address', label: 'Địa chỉ', sortable: true},
-        {key: 'mobilePhone', label: 'SĐT', sortable: true},
-        {key: 'birthday', label: 'Ngày sinh', sortable: true},
         {key: 'role', label: 'Vai trò', sortable: true},
-        {key: 'storeId', label: 'Chi nhánh', sortable: true},
-        {key: 'remark', label: 'Ghi chú', sortable: true},
         {key: 'status', label: 'Trạng thái', sortable: true},
-        {key: 'actions', label: 'Actions'}
+        {key: 'actions', label: 'Hành động'}
       ],
       currentPage: 1,
       perPage: 20,
@@ -140,12 +115,14 @@ export default {
       this.totalRows = filteredItems.length
       this.currentPage = 1
     },
+
     employeesAdd () {
       this.$router.push({path: 'create-employee'})
-    }
-  },
-  mounted () {
+    },
+
+    mounted () {
     this.$store.dispatch('user/getUsers');
+    }
   }
 }
 </script>
