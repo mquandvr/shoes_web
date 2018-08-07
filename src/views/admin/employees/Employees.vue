@@ -16,7 +16,7 @@
       <b-card :header="caption">
         <b-table :hover="hover" :filter="filter" :small="small" responsive :fixed="fixed"  :striped="striped" :bordered="bordered" stacked="md" :items="userList" :fields="fields" :current-page="currentPage" :per-page="perPage" @row-clicked="rowClicked" @filtered="onFiltered">
           <template slot="fullname" slot-scope="data">
-            {{data.item.fullname}}
+            {{data.item.fullName}}
           </template>
           <template slot="username" slot-scope="data">
             {{data.item.username}}
